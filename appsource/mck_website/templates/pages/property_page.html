@@ -45,56 +45,7 @@
             padding: 0 15px;
         }
 
-        /* Header Styles */
-        .header {
-            background: white;
-            box-shadow: var(--shadow);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo i {
-            color: var(--secondary);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a.active {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
+        
         /* Hero Banner */
         .hero-banner {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1973&q=80') no-repeat center center/cover;
@@ -652,6 +603,94 @@
         margin-bottom: 15px;
         color: var(--dark);
     }
+
+    /* Filter Container */
+.filter-group {
+  background: #ffffff;
+  padding: 18px 16px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  border: 1px solid #f1f1f1;
+}
+
+.filter-group:hover {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Heading */
+.filter-group h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 8px;
+  letter-spacing: 0.3px;
+}
+
+/* Select Wrapper (for icon support) */
+.filter-group select {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background-color: #fafafa;
+  color: #111827;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Hover + Focus Effects */
+.filter-group select:hover {
+  border-color: #facc15; /* yellow */
+  background: #fffdf5;
+}
+
+.filter-group select:focus {
+  border-color: #facc15;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.25);
+}
+
+/* Add Dropdown Arrow */
+.filter-group {
+  position: relative;
+}
+
+.filter-group::after {
+  content: "⌄";
+  position: absolute;
+  right: 18px;
+  top: 48px;
+  font-size: 14px;
+  color: #6b7280;
+  pointer-events: none;
+}
+
+/* Optional: Active State */
+.filter-group select:valid {
+  background-color: #fffbea;
+  border-color: #facc15;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .filter-group {
+    padding: 14px;
+  }
+
+  .filter-group h3 {
+    font-size: 13px;
+  }
+
+  .filter-group select {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}
 
     </style>
 </head>

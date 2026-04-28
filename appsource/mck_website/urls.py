@@ -36,4 +36,14 @@ urlpatterns = [
     path('ajax/property/save/', views.PropertySaveView.as_view(),name='mck_ajax_property_save'),
     path('ajax/maintenances/save/', views.MaintenanceSaveView.as_view(),name='mck_ajax_maintenance_save'),
     path('ajax/lead/save/', views.EnquirySaveView.as_view(),name='mck_ajax_enquiry_save'),
+
+
+    path('dashboard/',  views.UserDashboardPage.as_view(), name='dashboard'),
+    path('dashboard/property/delete/<int:pk>/',  views.UserPropertyDeleteView.as_view(), name='delete_property'),
+    path('dashboard/property/edit/<int:pk>/',  views.UserPropertyEditPage.as_view(), name='edit_property'),
+    path('dashboard/property/edit/<int:pk>/', views.UserPropertyEditPage.as_view(), name='edit_property'),
+    path('dashboard/property/update/<int:pk>/', views.UserPropertyUpdateView.as_view(), name='update_property'),
+    path('dashboard/property/image/delete/<int:pk>/', views.UserPropertyImageDeleteView.as_view(), name='delete_property_image'),
+    # In urls.py
+path('debug-properties/', views.DebugPropertiesView.as_view(), name='debug_properties'),
 ]

@@ -1,1174 +1,1589 @@
 {% extends "layouts/base.html" %}
 {% load static %}
-
 {% block content %}
 
-<!-- Modern Hero Section with Full-width Image Gallery -->
-<section class="property-hero">
-    <div class="container-fluid px-0">
-        <div class="row g-0">
-            <!-- Image Gallery with Modern Controls -->
-            <div class="col-lg-8 order-lg-1 order-2">
-                <div class="property-gallery position-relative">
-                    <div class="swiper propertySwiper">
-                        <div class="swiper-wrapper">
-                            {% for image in property.images.all %}
-                            <div class="swiper-slide">
-                                <div class="gallery-image" style="background-image: url('{{ image.image.url }}');"></div>
-                            </div>
-                            {% empty %}
-                            <div class="swiper-slide">
-                                <div class="gallery-image" style="background-image: url('{% static 'images/default-property.jpg' %}');"></div>
-                            </div>
-                            {% endfor %}
-                        </div>
-                        
-                        <!-- Custom navigation -->
-                        <div class="gallery-controls">
-                            <div class="swiper-button-prev-custom">
-                                <i class="fas fa-chevron-left"></i>
-                            </div>
-                            <div class="swiper-button-next-custom">
-                                <i class="fas fa-chevron-right"></i>
-                            </div>
-                        </div>
-                        
-                        <div class="swiper-pagination-custom"></div>
-                    </div>
-                    
-                    <!-- Gallery thumbnails -->
-                    <div class="gallery-thumbs mt-3">
-                        <div class="swiper propertyThumbs">
-                            <div class="swiper-wrapper">
-                                {% for image in property.images.all %}
-                                <div class="swiper-slide">
-                                    <div class="thumb-image" style="background-image: url('{{ image.image.url }}');"></div>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Floating action buttons -->
-                    <div class="floating-actions">
-                        <button class="btn-favorite">
-                            <i class="far fa-heart"></i>
-                        </button>
-                        <button class="btn-share">
-                            <i class="fas fa-share-alt"></i>
-                        </button>
-                        <button class="btn-fullscreen">
-                            <i class="fas fa-expand"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Property Summary Card - Modern Design -->
-            <div class="col-lg-4 order-lg-2 order-1">
-                <div class="property-summary">
-                    <div class="summary-content">
-                        <div class="property-badges">
-                            <span class="badge property-type">{{ property.property_type }}</span>
-                            {% if property.is_hot_selling %}
-                            <span class="badge hot-selling">Hot Selling</span>
-                            {% endif %}
-                            <span class="badge listing-date">Listed {{ property.list_date|date:"M d, Y" }}</span>
-                        </div>
-                        
-                        <h1 class="property-title text-dark ">{{ property.title }}</h1>
-                        
-                        <div class="property-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>{{ property.address }}, {{ property.city }}, {{ property.state }}</span>
-                        </div>
-                        
-                        <!-- <div class="price-section">
-                            <h2 class="price">${{ property.price|floatformat:0 }}</h2>
-                            {% if property.price_per_sqft %}
-                            <div class="price-sqft">${{ property.price_per_sqft|floatformat:0 }}/sqft</div>
-                            {% endif %}
-                        </div> -->
-                        
-                        <div class="property-highlights">                  
-                            <div class="highlight-item">
-                                <div class="highlight-icon">
-                                    <i class="fas fa-ruler-combined"></i>
-                                </div>
-                                <div class="highlight-info">
-                                    <div class="highlight-value">{{ property.sqft }}</div>
-                                    <div class="highlight-label">Sq Ft</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="property-actions">
-                        <button class="btn btn-primary btn-action">
-                            <i class="fas fa-phone-alt"></i>
-                            <span>99945 55962</span>
-                        </button>
-                        <button class="btn btn-outline btn-action">
-                            <i class="fas fa-calendar"></i>
-                            <a href="{% url 'mck_website:property_enquiry_page' %}"> Contact Us</a>
-                        </button>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<!-- Property Details Section -->
-<section class="property-details">
-    <div class="container">
-        <div class="row">
-            <!-- Main Content -->
-            <div class="col-lg-8">
-                <!-- Description Card -->
-                <div class="detail-card">
-                    <h3 class="detail-card-title">Description</h3>
-                    <div class="detail-card-content">
-                        <p>{{ property.description }}</p>
-                    </div>
-                </div>
-                
-                <!-- Property Details Card -->
-                <div class="detail-card">
-                    <h3 class="detail-card-title">Property Details</h3>
-                    <div class="detail-card-content">
-                        <div class="details-grid">
-                            <div class="detail-item">
-                                <span class="detail-label">Property Type</span>
-                                <span class="detail-value">{{ property.property_type }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Year Built</span>
-                                <span class="detail-value">{{ property.year_built|default:"N/A" }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Garage</span>
-                                <span class="detail-value">{{ property.garage|default:"N/A" }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Lot Size</span>
-                                <span class="detail-value">{{ property.lot_size|default:"N/A" }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Price per SqFt</span>
-                                <span class="detail-value">${{ property.price_per_sqft|floatformat:0|default:"N/A" }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Status</span>
-                                <span class="detail-value status-badge {% if property.is_published %}available{% else %}not-available{% endif %}">
-                                    {% if property.is_published %}Available{% else %}Not Available{% endif %}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Type-specific details -->
-                {% if property.property_type.name == "APA" %}
-                <div class="detail-card">
-                    <h3 class="detail-card-title">Apartment Details</h3>
-                    <div class="detail-card-content">
-                        <div class="details-grid">
-                            <div class="detail-item">
-                                <span class="detail-label">Floor Number</span>
-                                <span class="detail-value">{{ property.floor_number }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Total Floors</span>
-                                <span class="detail-value">{{ property.total_floors }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Building Age</span>
-                                <span class="detail-value">{{ property.building_age }} years</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Maintenance</span>
-                                <span class="detail-value">${{ property.maintenance_charges }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-                
-                <!-- Map Section -->
-                <div class="detail-card">
-                    <h3 class="detail-card-title">Location</h3>
-                    <div class="detail-card-content">
-                        
-                        <div class="location-address">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>{{ property.address }}, {{ property.city }}, {{ property.state }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Sidebar -->
-            <div class="col-lg-4">
-                <!-- Contact Form Card -->
-                <div class="sidebar-card">
-                    <h3 class="sidebar-card-title">Contact Agent</h3>
-                    <div class="sidebar-card-content">
-                         
-                    </div>
-                </div>
-                
-                <!-- Share Property Card -->
-                <div class="sidebar-card">
-                    <h3 class="sidebar-card-title">Share This Property</h3>
-                    <div class="sidebar-card-content">
-                        <div class="share-buttons">
-                            <a href="https://www.facebook.com/squareboxtransformingspace/" class="share-button facebook">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="https://www.instagram.com/squarebox.co.in/" class="share-button twitter">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                          
-                            <a href="#" class="share-button email">
-                                <i class="fas fa-envelope"></i>
-                            </a>
-                            <a href="#" class="share-button link">
-                                <i class="fas fa-link"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Similar Properties Card -->
-                <div class="sidebar-card">
-                    <h3 class="sidebar-card-title">Similar Properties</h3>
-                    <div class="sidebar-card-content">
-                        <div class="similar-properties">
-                            <div class="similar-property">
-                                <div class="similar-property-image" style="background-image: url('https://via.placeholder.com/300x200');"></div>
-                                <div class="similar-property-info">
-                                    <div class="similar-property-price">$425,000</div>
-                                    <div class="similar-property-details">3 Beds | 2 Baths | 1,200 sqft</div>
-                                    <div class="similar-property-address">123 Nearby St, Same City</div>
-                                </div>
-                            </div>
-                            
-                            <div class="similar-property">
-                                <div class="similar-property-image" style="background-image: url('https://via.placeholder.com/300x200');"></div>
-                                <div class="similar-property-info">
-                                    <div class="similar-property-price">$489,000</div>
-                                    <div class="similar-property-details">4 Beds | 3 Baths | 1,500 sqft</div>
-                                    <div class="similar-property-address">456 Another St, Same City</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{% url 'mck_website:mck_property_page' %}" class="view-more-link">View More Similar Properties <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Features Section -->
-<section class="property-features">
-    <div class="container">
-        <div class="section-header">
-            <h2>Property Features</h2>
-        </div>
-        <div class="features-grid">
-            <div class="feature-item">
-                <i class="fas fa-home"></i>
-                <span>Type: {{ property.property_type }}</span>
-            </div>
-            <div class="feature-item">
-                <i class="fas fa-calendar-alt"></i>
-                <span>Listed: {{ property.updated_on|date:"F j, Y" }}</span>
-            </div>
-            <div class="feature-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Location: {{ property.city }}, {{ property.state }}</span>
-            </div>
-            <div class="feature-item">
-                <i class="fas fa-tag"></i>
-                <span>Status: {% if property.is_published %}Available{% else %}Not Available{% endif %}</span>
-            </div>
-            {% if property.is_hot_selling %}
-            <div class="feature-item">
-                <i class="fas fa-fire"></i>
-                <span>Hot Selling Property</span>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-</section>
-
-<!-- Virtual Tour Modal -->
-<div class="modal fade" id="virtualTourModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Virtual Tour - {{ property.title }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="virtual-tour-placeholder">
-                    <i class="fas fa-video"></i>
-                    <p>Virtual tour would be embedded here</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- CSS Styles -->
 <style>
+/* ─── DESIGN TOKENS ─── */
 :root {
-    --bg: #f5f7fb;
-    --card: #ffffff;
-    --text: #1f2937;
-    --muted: #64748b;
-    --line: #e5e7eb;
-    --primary: #FFD700;
-    --primary-600: #FFD700;
-    --primary-50: #eaf6ff;
-    --shadow: 0 8px 24px rgba(15, 23, 42, .06);
-    --radius: 14px;
+  --gold:       #E8A800;
+  --gold-light: #FFD84D;
+  --gold-pale:  #FFFBEC;
+  --gold-tint:  #FFF5CC;
+  --ink:        #0F1523;
+  --ink-soft:   #2C3347;
+  --muted:      #7A849A;
+  --line:       #EAECF0;
+  --surface:    #FFFFFF;
+  --bg:         #F7F8FA;
+  --success:    #16A34A;
+
+  --shadow-xs:  0 1px 3px rgba(0,0,0,.06);
+  --shadow-sm:  0 4px 14px rgba(0,0,0,.08);
+  --shadow-md:  0 12px 32px rgba(0,0,0,.10);
+  --shadow-lg:  0 24px 60px rgba(0,0,0,.12);
+
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
 }
 
+*, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
 
 body {
-    font-family: 'Inter', sans-serif;
-    color: var(--text);
-    background: var(--bg);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Property Hero Section */
-.property-hero {
-    position: relative;
-    margin: 20px 0;
+/* ─── STICKY NAV BREADCRUMB ─── */
+.prop-breadcrumb {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  padding: 13px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+.prop-breadcrumb .inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.bc-trail {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.bc-trail a { color: var(--muted); text-decoration: none; }
+.bc-trail a:hover { color: var(--gold); }
+.bc-trail .sep { font-size: 10px; }
+.bc-trail .current { color: var(--ink); font-weight: 500; }
+.bc-actions {
+  display: flex;
+  gap: 8px;
+}
+.bc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all .2s;
+  color: var(--ink);
+  text-decoration: none;
+}
+.bc-btn:hover { border-color: var(--gold); background: var(--gold-tint); color: var(--ink); }
+.bc-btn.primary { background: var(--gold); border-color: var(--gold); font-weight: 600; }
+.bc-btn.primary:hover { background: var(--gold-light); }
+
+/* ─── HERO GALLERY ─── */
+.hero-wrap {
+  max-width: 1240px;
+  margin: 28px auto 0;
+  padding: 0 24px;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 12px;
+  height: 520px;
+}
+@media(max-width:1024px) { .hero-grid { grid-template-columns: 1fr; height: auto; } }
+
+.gallery-main {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: #e0e2e8;
+}
+.swiper.mainSwiper { height: 100%; }
+.g-slide {
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 55%, rgba(0,0,0,.45));
+  pointer-events: none;
+  z-index: 1;
+}
+.gallery-nav {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+.gnav-btn {
+  width: 40px; height: 40px;
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; cursor: pointer; transition: all .2s;
+  font-size: 14px;
+}
+.gnav-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+.gallery-count {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10;
+  background: rgba(0,0,0,.5);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.gallery-pill-btns {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+.gpill {
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all .2s;
+  text-decoration: none;
+}
+.gpill:hover { background: rgba(0,0,0,.75); color:#fff; }
+.gpill.hot { background: rgba(220,38,38,.85); }
+
+.gallery-side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+@media(max-width:1024px) { .gallery-side { display:none; } }
+.side-thumb {
+  flex: 1;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: #d4d6de;
+  cursor: pointer;
+  position: relative;
+}
+.side-thumb .th-img {
+  width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform .4s ease;
+}
+.side-thumb:hover .th-img { transform: scale(1.04); }
+.side-thumb.more-thumb::after {
+  content: 'View All Photos';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+}
+.side-thumb.more-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.gallery-image {
-    height: 60vh;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    border-radius: var(--radius);
+/* ─── MAIN LAYOUT ─── */
+.pd-layout {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 36px 24px 80px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 32px;
+  align-items: start;
+}
+@media(max-width:1024px) {
+  .pd-layout { grid-template-columns: 1fr; }
 }
 
-.gallery-controls {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 12px;
-    z-index: 10;
+/* ─── LEFT MAIN ─── */
+
+/* Property Header */
+.prop-header {
+  margin-bottom: 28px;
+}
+.prop-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.ptag {
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.ptag-type { background: var(--gold-tint); color: #8A6000; }
+.ptag-hot { background: #FEE2E2; color: #DC2626; }
+.ptag-featured { background: #EEF2FF; color: #4F46E5; }
+.ptag-available { background: #DCFCE7; color: var(--success); }
+
+.prop-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+@media(max-width:768px) { .prop-name { font-size: 26px; } }
+
+.prop-loc {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.prop-loc i { color: var(--gold); }
+
+/* Price Strip */
+.price-strip {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-xs);
+}
+.ps-left { display: flex; align-items: baseline; gap: 10px; }
+.ps-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+}
+.ps-per-sqft {
+  font-size: 14px;
+  color: var(--muted);
+  border-left: 1px solid var(--line);
+  padding-left: 10px;
+}
+.ps-stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.ps-stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.ps-stat i {
+  width: 32px; height: 32px;
+  background: var(--gold-pale);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold);
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.ps-stat-val { font-weight: 700; color: var(--ink); }
+.ps-stat-lab { color: var(--muted); font-size: 11px; }
+
+/* Section card */
+.sec-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-xs);
+}
+.sec-head {
+  padding: 20px 24px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.sec-head-icon {
+  width: 36px; height: 36px;
+  background: var(--gold-pale);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold);
+  font-size: 15px;
+}
+.sec-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.sec-body { padding: 0 24px 24px; }
+
+/* Description */
+.desc-text {
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.8;
+}
+.desc-more-btn {
+  margin-top: 12px;
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.swiper-button-prev-custom, .swiper-button-next-custom {
-    width: 50px;
-    height: 50px;
-    background: rgba(7, 7, 7, 0.9);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow);
+/* Details grid */
+.dg {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
 }
-
-.swiper-button-prev-custom:hover, .swiper-button-next-custom:hover {
-    background: rgb(3, 3, 3);
-    transform: scale(1.05);
+@media(max-width:600px) { .dg { grid-template-columns: 1fr; } }
+.dg-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
 }
-
-.swiper-pagination-custom {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    z-index: 10;
+.dg-item:nth-child(odd):not(:last-child),
+.dg-item:nth-child(even):not(:last-child) { }
+.dg-item:last-child, .dg-item:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+.dg-icon {
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  color: var(--gold);
+  flex-shrink: 0;
 }
+.dg-label { font-size: 12px; color: var(--muted); }
+.dg-value { font-size: 14px; font-weight: 600; color: var(--ink); }
 
-.swiper-pagination-bullet {
-    width: 10px;
-    height: 10px;
-    background: rgba(7, 7, 7, 0.6);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
+/* Amenities */
+.am-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
 }
-
-.swiper-pagination-bullet-active {
-    background: rgb(7, 7, 7);
-    transform: scale(1.2);
+@media(max-width:600px) { .am-grid { grid-template-columns: repeat(2, 1fr); } }
+.am-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--bg);
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--line);
+  transition: all .2s;
 }
-
-.gallery-thumbs {
-    padding: 0 60px;
-    margin-top: 20px;
+.am-item:hover {
+  border-color: var(--gold);
+  background: var(--gold-pale);
+  transform: translateY(-2px);
 }
+.am-item i { color: var(--gold); font-size: 13px; }
 
-.thumb-image {
-    height: 80px;
-    background-size: cover;
-    background-position: center;
-    border-radius: 8px;
-    cursor: pointer;
-    opacity: 0.6;
-    transition: all 0.3s ease;
-}
-
-.thumb-image:hover, .swiper-slide-thumb-active .thumb-image {
-    opacity: 1;
-}
-
-.floating-actions {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    z-index: 10;
-}
-
-.btn-favorite, .btn-share, .btn-fullscreen {
-    width: 50px;
-    height: 50px;
-    background: rgba(5, 5, 5, 0.9);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow);
-}
-
-.btn-favorite:hover, .btn-share:hover, .btn-fullscreen:hover {
-    background: rgb(8, 8, 8);
-    transform: scale(1.05);
-}
-
-.btn-favorite.active {
-    color: #ef4444;
-}
-
-/* Property Summary */
-.property-summary {
-    background: var(--card);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    box-shadow: var(--shadow);
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-}
-
-.summary-content {
-    flex: 1;
-}
-
-.property-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 20px;
-}
-
-.badge {
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.property-type {
-    background: var(--primary);
-    color: rgb(8, 8, 8);
-}
-
-.hot-selling {
-    background: #f59e0b;
-    color: rgb(15, 15, 15);
-}
-
-.listing-date {
-    background: var(--primary-50);
-    color: var(--primary);
-}
-
-.property-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 12px;
-    line-height: 1.3;
-}
-
-.property-location {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--muted);
-    margin-bottom: 24px;
-}
-
-.price-section {
-    margin-bottom: 30px;
-}
-
-.price {
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 4px;
-}
-
-.price-sqft {
-    font-size: 14px;
-    color: var(--muted);
-}
-
-.property-highlights {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 30px;
-}
-
-.highlight-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px;
-    background: var(--primary-50);
-    border-radius: var(--radius);
-    transition: all 0.3s ease;
-    border: 1px solid var(--line);
-}
-
-.highlight-item:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow);
-}
-
-.highlight-icon {
-    width: 40px;
-    height: 40px;
-    background: var(--primary);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
-.highlight-value {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text);
-}
-
-.highlight-label {
-    font-size: 12px;
-    color: var(--muted);
-}
-
-.property-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.btn-action {
-    padding: 16px;
-    border-radius: var(--radius);
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: all 0.3s ease;
-}
-
-.btn-primary {
-    background: var(--primary);
-    border: none;
-    color: rgb(2, 2, 2);
-}
-
-
-    .btn-primary:hover {
-        background: #050505;
-        color: white;
-    }
-
-
-.btn-outline {
-    background: transparent;
-    border: 1px solid var(--line);
-    color: var(--text);
-}
-
-.btn-outline:hover {
-    background: var(--primary-50);
-    transform: translateY(-2px);
-}
-
-/* Property Details */
-.property-details {
-    padding: 40px 0;
-}
-
-.detail-card {
-    background: var(--card);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    margin-bottom: 30px;
-    overflow: hidden;
-    border: 1px solid var(--line);
-}
-
-.detail-card-title {
-    font-size: 20px;
-    font-weight: 700;
-    padding: 24px 24px 0;
-    margin-bottom: 0;
-    color: var(--text);
-}
-
-.detail-card-content {
-    padding: 24px;
-}
-
-.details-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-}
-
-.detail-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--line);
-}
-
-.detail-item:last-child {
-    border-bottom: none;
-}
-
-.detail-label {
-    color: var(--muted);
-}
-
-.detail-value {
-    font-weight: 600;
-    color: var(--text);
-}
-
-.status-badge {
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.available {
-    background: rgba(16, 185, 129, 0.1);
-    color: #10b981;
-}
-
-.not-available {
-    background: rgba(107, 114, 128, 0.1);
-    color: var(--muted);
-}
-
-.map-container {
-    border-radius: var(--radius);
-    overflow: hidden;
-    margin-bottom: 16px;
-}
-
+/* Map */
 .map-placeholder {
-    height: 300px;
-    background: var(--primary-50);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--muted);
-    font-size: 18px;
-    border: 1px dashed #bdbdbd;
+  height: 280px;
+  background: var(--bg);
+  border-radius: var(--r-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--muted);
+  border: 1px dashed var(--line);
+  position: relative;
+  overflow: hidden;
 }
-
-.map-placeholder i {
-    font-size: 48px;
-    margin-bottom: 16px;
+.map-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 60%, rgba(232,168,0,.06) 0%, transparent 70%);
 }
-
-.location-address {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--muted);
+.map-icon-big {
+  width: 56px; height: 56px;
+  background: var(--gold-pale);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold);
+  font-size: 22px;
 }
-
-/* Sidebar Cards */
-.sidebar-card {
-    background: var(--card);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    margin-bottom: 30px;
-    overflow: hidden;
-    border: 1px solid var(--line);
+.map-address { font-size: 13px; max-width: 280px; text-align: center; line-height: 1.5; }
+.btn-directions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  background: var(--gold);
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all .2s;
+  color: var(--ink);
+  text-decoration: none;
 }
+.btn-directions:hover { background: var(--gold-light); transform: translateY(-1px); }
 
-.sidebar-card-title {
-    font-size: 18px;
-    font-weight: 700;
-    padding: 20px 20px 0;
-    margin-bottom: 0;
-    color: var(--text);
+/* Nearby strip */
+.nearby-strip {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
 }
-
-.sidebar-card-content {
-    padding: 20px;
+.nearby-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 500;
 }
+.nearby-item i { color: var(--gold); }
+.nearby-dist { color: var(--muted); margin-left: 2px; }
 
-.form-group {
-    margin-bottom: 16px;
+/* Features highlight row */
+.feat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  background: linear-gradient(135deg, var(--gold-pale) 0%, #FFFEF5 100%);
+  border: 1px solid rgba(232,168,0,.2);
+  border-radius: var(--r-md);
+  padding: 24px;
+  margin-bottom: 24px;
 }
-
-.form-control {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    transition: all 0.3s ease;
-    background: #fff;
+.feat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-
-.form-control:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(41, 161, 255, 0.1);
+.feat-icon {
+  width: 42px; height: 42px;
+  background: var(--surface);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold);
+  font-size: 16px;
+  box-shadow: var(--shadow-xs);
 }
+.feat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+.feat-val { font-size: 15px; font-weight: 700; color: var(--ink); }
 
-.btn-block {
-    width: 100%;
+/* ─── RIGHT SIDEBAR ─── */
+.sidebar { display: flex; flex-direction: column; gap: 20px; }
+
+/* Price CTA card */
+.cta-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 76px;
 }
-
-.share-buttons {
-    display: flex;
-    justify-content: space-between;
+.cta-top {
+  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-soft) 100%);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
 }
-
-.share-button {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    transition: all 0.3s ease;
+.cta-top::after {
+  content: '';
+  position: absolute;
+  top: -30px; right: -30px;
+  width: 120px; height: 120px;
+  background: rgba(232,168,0,.15);
+  border-radius: 50%;
 }
-
-.share-button:hover {
-    transform: translateY(-3px);
+.cta-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--gold-light);
+  position: relative;
+  z-index: 1;
 }
+.cta-sub { font-size: 13px; color: rgba(255,255,255,.55); margin-top: 4px; position: relative; z-index: 1; }
+.cta-body { padding: 24px; }
 
-.facebook { background: #3b5998; }
-.twitter { background: #1da1f2; }
-.linkedin { background: #0077b5; }
-.email { background: var(--muted); }
-.link { background: var(--text); }
-
-.similar-properties {
-    margin-bottom: 16px;
+.cta-btns { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.cta-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all .2s;
+  text-decoration: none;
 }
+.cta-btn.primary { background: var(--gold); color: var(--ink); }
+.cta-btn.primary:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,168,0,.3); }
+.cta-btn.outline { background: transparent; border: 2px solid var(--line); color: var(--ink); }
+.cta-btn.outline:hover { border-color: var(--gold); background: var(--gold-pale); }
+.cta-btn.whatsapp-btn { background: #25D366; color: #fff; }
+.cta-btn.whatsapp-btn:hover { background: #22C55E; }
 
-.similar-property {
-    display: flex;
-    gap: 16px;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--line);
+.cta-divider {
+  height: 1px;
+  background: var(--line);
+  margin: 18px 0;
 }
-
-.similar-property:last-child {
-    border-bottom: none;
+.cta-trust {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
-
-.similar-property-image {
-    width: 80px;
-    height: 60px;
-    border-radius: 8px;
-    background-size: cover;
-    background-position: center;
-    border: 1px solid var(--line);
+.ct-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--muted);
 }
+.ct-item i { color: var(--success); }
 
-.similar-property-info {
-    flex: 1;
+/* Enquiry form */
+.enq-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
 }
-
-.similar-property-price {
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 4px;
+.enq-head {
+  padding: 20px 24px 14px;
+  border-bottom: 1px solid var(--line);
 }
-
-.similar-property-details {
-    font-size: 14px;
-    color: var(--muted);
-    margin-bottom: 4px;
+.enq-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
 }
-
-.similar-property-address {
-    font-size: 14px;
-    color: var(--text);
+.enq-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.enq-body { padding: 20px 24px 24px; }
+.enq-form { display: flex; flex-direction: column; gap: 12px; }
+.ef-group { display: flex; flex-direction: column; gap: 5px; }
+.ef-label { font-size: 12px; font-weight: 600; color: var(--ink); text-transform: uppercase; letter-spacing: .5px; }
+.ef-input, .ef-textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-sm);
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--bg);
+  transition: all .2s;
+  resize: vertical;
 }
-
-.view-more-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--primary);
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
+.ef-input:focus, .ef-textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(232,168,0,.12);
 }
-
-.view-more-link:hover {
-    gap: 12px;
-    color: var(--primary-600);
+.ef-submit {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%;
+  padding: 13px;
+  background: var(--gold);
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+  color: var(--ink);
+  margin-top: 4px;
 }
+.ef-submit:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,168,0,.3); }
 
-/* Features Section */
-.property-features {
-    padding: 60px 0;
-    background: var(--bg);
+/* Agent card */
+.agent-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: var(--shadow-xs);
 }
-
-.section-header {
-    text-align: center;
-    margin-bottom: 40px;
+.ag-avatar {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: var(--gold-pale);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold);
+  font-size: 28px;
+  overflow: hidden;
+  flex-shrink: 0;
 }
-
-.section-header h2 {
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--text);
-    position: relative;
-    display: inline-block;
+.ag-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.ag-name { font-weight: 700; font-size: 15px; color: var(--ink); }
+.ag-role { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+.ag-links { display: flex; gap: 8px; }
+.ag-link {
+  font-size: 12px;
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
+.ag-link:hover { text-decoration: underline; }
 
-.section-header h2:after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: var(--primary);
-    border-radius: 3px;
+/* Share card */
+.share-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-xs);
 }
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+.share-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 12px;
 }
-
-.feature-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 20px;
-    background: var(--card);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    transition: all 0.3s ease;
-    border: 1px solid var(--line);
+.share-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.sh-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  transition: all .2s;
+  text-decoration: none;
+  font-size: 15px;
 }
+.sh-btn:hover { transform: translateY(-3px); }
+.sh-fb { background: #1877F2; }
+.sh-tw { background: #1DA1F2; }
+.sh-wa { background: #25D366; }
+.sh-ig { background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); }
+.sh-lk { background: #0a66c2; }
+.sh-copy { background: var(--ink); }
 
-.feature-item:hover {
-    transform: translateY(-3px);
+/* Similar properties */
+.similar-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
 }
-
-.feature-item i {
-    color: var(--primary);
-    font-size: 20px;
+.sc-head { padding: 18px 20px 0; }
+.sc-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 14px;
 }
-
-/* Virtual Tour Modal */
-.modal-content {
-    border-radius: var(--radius);
-    border: none;
+.sc-list { padding: 0 20px; }
+.sc-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  transition: all .2s;
 }
-
-.virtual-tour-placeholder {
-    height: 500px;
-    background: var(--primary-50);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--muted);
-    font-size: 18px;
-    border: 1px dashed #bdbdbd;
+.sc-item:last-child { border-bottom: none; }
+.sc-item:hover { transform: translateX(4px); }
+.sc-thumb {
+  width: 72px; height: 58px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
 }
-
-.virtual-tour-placeholder i {
-    font-size: 64px;
-    margin-bottom: 20px;
+.sc-price { font-weight: 700; font-size: 14px; color: var(--gold); margin-bottom: 2px; }
+.sc-info { font-size: 11px; color: var(--muted); margin-bottom: 3px; }
+.sc-addr { font-size: 12px; color: var(--ink); font-weight: 500; }
+.sc-footer { padding: 12px 20px; border-top: 1px solid var(--line); }
+.sc-more {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
 }
+.sc-more:hover { gap: 10px; }
 
-/* Responsive Design */
-@media (max-width: 992px) {
-    .gallery-image {
-        height: 50vh;
-    }
-    
-    .property-highlights {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .details-grid {
-        grid-template-columns: 1fr;
-    }
+/* Virtual tour modal */
+.modal { display:none; position:fixed; inset:0; z-index:9000; }
+.modal.open { display:flex; align-items:center; justify-content:center; }
+.modal-backdrop { position:absolute; inset:0; background:rgba(0,0,0,.7); backdrop-filter:blur(4px); }
+.modal-box {
+  position: relative;
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  width: min(90vw, 960px);
+  max-height: 90vh;
+  overflow: auto;
+  z-index: 1;
 }
-
-@media (max-width: 768px) {
-    .gallery-image {
-        height: 40vh;
-    }
-    
-    .property-title {
-        font-size: 24px;
-    }
-    
-    .price {
-        font-size: 28px;
-    }
-    
-    .property-highlights {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .floating-actions {
-        top: 20px;
-        right: 20px;
-    }
-    
-    .gallery-controls {
-        bottom: 20px;
-    }
+.modal-hdr {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+.modal-hdr h5 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: var(--ink);
+}
+.modal-close {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  color: var(--muted);
+  transition: all .2s;
+}
+.modal-close:hover { background: var(--bg); color: var(--ink); }
+.modal-bdy iframe { display: block; }
 
-@media (max-width: 576px) {
-    .gallery-image {
-        height: 35vh;
-    }
-    
-    .property-summary {
-        padding: 20px;
-    }
-    
-    .property-highlights {
-        grid-template-columns: 1fr;
-    }
-    
-    .highlight-item {
-        justify-content: center;
-    }
-    
-    .share-buttons {
-        flex-wrap: wrap;
-        gap: 10px;
-        justify-content: center;
-    }
-    
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
+/* Fullscreen viewer */
+.fs-viewer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.96);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+.fs-viewer.open { display: flex; }
+.fs-viewer img {
+  max-width: 92vw;
+  max-height: 88vh;
+  border-radius: var(--r-md);
+  box-shadow: 0 0 80px rgba(0,0,0,.5);
+}
+.fs-close {
+  position: absolute;
+  top: 20px; right: 20px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  color: #fff;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  transition: all .2s;
+}
+.fs-close:hover { background: rgba(255,255,255,.25); }
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 32px; left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--ink);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 9000;
+  opacity: 0;
+  transition: all .3s;
+  pointer-events: none;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+.toast i { color: var(--gold); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-wrap,
+.prop-header,
+.price-strip,
+.feat-row,
+.sec-card,
+.cta-card,
+.enq-card,
+.agent-card {
+  animation: fadeUp .5s ease both;
+}
+.sec-card:nth-child(2) { animation-delay: .1s; }
+.sec-card:nth-child(3) { animation-delay: .15s; }
+.sec-card:nth-child(4) { animation-delay: .2s; }
+
+/* Print / utility */
+.d-none { display: none !important; }
+@media(max-width:640px) {
+  .ps-left { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .ps-per-sqft { border-left: none; padding-left: 0; }
 }
 </style>
 
-<!-- JavaScript -->
- <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Thumbnail swiper
-    const thumbSwiper = new Swiper(".property-thumbs", {
-      spaceBetween: 10,
-      slidesPerView: 4,
-      freeMode: true,
-      watchSlidesProgress: true,
-    });
+<!-- ─── BREADCRUMB ─── -->
+<nav class="prop-breadcrumb">
+  <div class="inner">
+    <div class="bc-trail">
+      <a href="/"><i class="fas fa-home"></i></a>
+      <span class="sep">›</span>
+      <a href="{% url 'mck_website:mck_property_page' %}">Properties</a>
+      <span class="sep">›</span>
+      <span class="current">{{ property.title|truncatechars:40 }}</span>
+    </div>
+    <div class="bc-actions">
+      <button class="bc-btn btn-favorite-bc" data-property-id="{{ property.id }}">
+        <i class="far fa-heart"></i> Save
+      </button>
+      <button class="bc-btn btn-share-bc">
+        <i class="fas fa-share-alt"></i> Share
+      </button>
+      <a href="{% url 'mck_website:property_enquiry_page' %}?property={{ property.id }}" class="bc-btn primary">
+        <i class="fas fa-calendar-check"></i> Book Visit
+      </a>
+    </div>
+  </div>
+</nav>
 
-    // Main swiper
-    const mainSwiper = new Swiper(".property-main", {
-      spaceBetween: 10,
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      thumbs: {
-        swiper: thumbSwiper,
-      },
-    });
+<!-- ─── HERO GALLERY ─── -->
+<div class="hero-wrap">
+  <div class="hero-grid">
+    <!-- Main swiper -->
+    <div class="gallery-main">
+      <div class="swiper mainSwiper">
+        <div class="swiper-wrapper">
+          {% for image in property.images.all %}
+          <div class="swiper-slide">
+            <div class="g-slide" style="background-image:url('{{ image.image.url }}');"></div>
+          </div>
+          {% empty %}
+          <div class="swiper-slide">
+            <div class="g-slide" style="background-image:url('{% static 'images/default-property.jpg' %}');"></div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="gallery-overlay"></div>
 
-    // Fullscreen image modal
-    const fullscreenModal = document.createElement("div");
-    fullscreenModal.className = "fullscreen-modal";
-    fullscreenModal.style.display = "none";
-    fullscreenModal.style.position = "fixed";
-    fullscreenModal.style.top = "0";
-    fullscreenModal.style.left = "0";
-    fullscreenModal.style.width = "100%";
-    fullscreenModal.style.height = "100%";
-    fullscreenModal.style.background = "rgba(0,0,0,0.9)";
-    fullscreenModal.style.zIndex = "9999";
-    fullscreenModal.style.justifyContent = "center";
-    fullscreenModal.style.alignItems = "center";
+      <!-- Pill badges -->
+      <div class="gallery-pill-btns">
+        {% if property.is_hot_selling %}
+        <span class="gpill hot"><i class="fas fa-fire"></i> Hot</span>
+        {% endif %}
+        {% if property.virtual_tour_url %}
+        <button class="gpill" id="openVirtualTour"><i class="fas fa-vr-cardboard"></i> 3D Tour</button>
+        {% endif %}
+        <button class="gpill btn-fullscreen-main"><i class="fas fa-expand-alt"></i> Full View</button>
+      </div>
 
-    const fullscreenImg = document.createElement("img");
-    fullscreenImg.style.maxWidth = "90%";
-    fullscreenImg.style.maxHeight = "90%";
-    fullscreenModal.appendChild(fullscreenImg);
+      <div class="gallery-count">
+        <i class="fas fa-images"></i>
+        <span id="imgCount">1 / {{ property.images.all|length|default:'1' }}</span>
+      </div>
 
-    document.body.appendChild(fullscreenModal);
+      <div class="gallery-nav">
+        <button class="gnav-btn swiper-prev-main"><i class="fas fa-chevron-left"></i></button>
+        <button class="gnav-btn swiper-next-main"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
 
-    // Close fullscreen on click
-    fullscreenModal.addEventListener("click", () => {
-      fullscreenModal.style.display = "none";
-      fullscreenImg.src = "";
-    });
+    <!-- Side thumbs -->
+    <div class="gallery-side">
+      {% for image in property.images.all|slice:"1:3" %}
+      <div class="side-thumb" data-img="{{ image.image.url }}">
+        <div class="th-img" style="background-image:url('{{ image.image.url }}');"></div>
+      </div>
+      {% endfor %}
+      {% if property.images.all|length > 3 %}
+      <div class="side-thumb more-thumb" data-img="{% if property.images.all.3 %}{{ property.images.all.3.image.url }}{% endif %}">
+        <div class="th-img" style="background-image:url('{% if property.images.all.3 %}{{ property.images.all.3.image.url }}{% else %}{% static 'images/default-property.jpg' %}{% endif %}');"></div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
 
-    // Open fullscreen when clicking on image
-    document.querySelectorAll(".property-main .swiper-slide img").forEach((img) => {
-      img.addEventListener("click", () => {
-        fullscreenImg.src = img.src;
-        fullscreenModal.style.display = "flex";
-      });
-    });
+<!-- ─── MAIN CONTENT ─── -->
+<div class="pd-layout">
+  <!-- LEFT -->
+  <div class="pd-main">
 
-    // Favorite button toggle
-    document.querySelectorAll(".favorite-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        btn.classList.toggle("active");
-      });
-    });
-  });
-</script>
+    <!-- Property Header -->
+    <div class="prop-header">
+      <div class="prop-tags">
+        <span class="ptag ptag-type">{{ property.property_type.name|default:property.property_type }}</span>
+        {% if property.is_published %}<span class="ptag ptag-available"><i class="fas fa-circle" style="font-size:8px"></i> Available</span>{% endif %}
+        {% if property.is_hot_selling %}<span class="ptag ptag-hot"><i class="fas fa-fire"></i> Hot Selling</span>{% endif %}
+        {% if property.is_featured %}<span class="ptag ptag-featured"><i class="fas fa-star"></i> Featured</span>{% endif %}
+      </div>
+      <h1 class="prop-name">{{ property.title }}</h1>
+      <div class="prop-loc">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>{{ property.address }}, {{ property.city }}, {{ property.state }}{% if property.zipcode %} – {{ property.zipcode }}{% endif %}</span>
+      </div>
+    </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Swiper for main gallery
-    const propertySwiper = new Swiper('.propertySwiper', {
-        loop: true,
-        speed: 800,
-        effect: 'fade',
-        fadeEffect: {
-            crossFade: true
-        },
-        autoplay: {
-            delay: 5000,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next-custom',
-            prevEl: '.swiper-button-prev-custom',
-        },
-        pagination: {
-            el: '.swiper-pagination-custom',
-            clickable: true,
-            renderBullet: function (index, className) {
-                return '<span class="' + className + ' swiper-pagination-bullet"></span>';
-            },
-        },
-    });
-    
-    // Initialize Swiper for thumbnails
-    const propertyThumbs = new Swiper('.propertyThumbs', {
-        loop: true,
-        slidesPerView: 4,
-        spaceBetween: 10,
-        centeredSlides: true,
-        slideToClickedSlide: true,
-    });
-    
-    // Link main gallery with thumbnails
-    propertySwiper.controller.control = propertyThumbs;
-    propertyThumbs.controller.control = propertySwiper;
-    
-    // Favorite button functionality
-    const favoriteBtn = document.querySelector('.btn-favorite');
-    favoriteBtn.addEventListener('click', function() {
-        this.classList.toggle('active');
-        const icon = this.querySelector('i');
-        if (this.classList.contains('active')) {
-            icon.classList.remove('far');
-            icon.classList.add('fas');
-            // Here you would typically make an AJAX call to save to favorites
-        } else {
-            icon.classList.remove('fas');
-            icon.classList.add('far');
-            // AJAX call to remove from favorites
-        }
-    });
-    
-    // Fullscreen functionality
-    const fullscreenBtn = document.querySelector('.btn-fullscreen');
-    fullscreenBtn.addEventListener('click', function() {
-        // Implement fullscreen gallery view
-        alert('Fullscreen gallery view would open here');
-    });
-    
-    // Share functionality
-    const shareBtn = document.querySelector('.btn-share');
-    shareBtn.addEventListener('click', function() {
-        // Implement share functionality
-        alert('Share dialog would open here');
-    });
-    
-    // Virtual tour button
-    const virtualTourBtn = document.querySelector('.btn-action:nth-child(3)');
-    virtualTourBtn.addEventListener('click', function() {
-        const virtualTourModal = new bootstrap.Modal(document.getElementById('virtualTourModal'));
-        virtualTourModal.show();
-    });
-});
-</script>
+    <!-- Price Strip -->
+    <div class="price-strip">
+      <div class="ps-left">
+        <div class="ps-price">${{ property.price|floatformat:0|default:"0" }}</div>
+        {% if property.price_per_sqft %}
+        <div class="ps-per-sqft">${{ property.price_per_sqft|floatformat:0 }} / sqft</div>
+        {% endif %}
+      </div>
+      <div class="ps-stats">
+        {% if property.bedrooms %}
+        <div class="ps-stat">
+          <i class="fas fa-bed"></i>
+          <div>
+            <div class="ps-stat-val">{{ property.bedrooms }}</div>
+            <div class="ps-stat-lab">Bedrooms</div>
+          </div>
+        </div>
+        {% endif %}
+        {% if property.bathrooms %}
+        <div class="ps-stat">
+          <i class="fas fa-bath"></i>
+          <div>
+            <div class="ps-stat-val">{{ property.bathrooms }}</div>
+            <div class="ps-stat-lab">Bathrooms</div>
+          </div>
+        </div>
+        {% endif %}
+        <div class="ps-stat">
+          <i class="fas fa-ruler-combined"></i>
+          <div>
+            <div class="ps-stat-val">{{ property.sqft|default:"N/A" }}</div>
+            <div class="ps-stat-lab">Sq Ft</div>
+          </div>
+        </div>
+        {% if property.garage %}
+        <div class="ps-stat">
+          <i class="fas fa-car"></i>
+          <div>
+            <div class="ps-stat-val">{{ property.garage }}</div>
+            <div class="ps-stat-lab">Garage</div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
 
-<!-- Include Swiper JS -->
-<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <!-- Feature Row -->
+    <div class="feat-row">
+      <div class="feat-item">
+        <div class="feat-icon"><i class="fas fa-home"></i></div>
+        <div>
+          <div class="feat-label">Property Type</div>
+          <div class="feat-val">{{ property.property_type.name|default:property.property_type }}</div>
+        </div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon"><i class="fas fa-calendar-alt"></i></div>
+        <div>
+          <div class="feat-label">Listed On</div>
+          <div class="feat-val">{{ property.list_date|date:"M d, Y" }}</div>
+        </div>
+      </div>
+      {% if property.year_built %}
+      <div class="feat-item">
+        <div class="feat-icon"><i class="fas fa-hammer"></i></div>
+        <div>
+          <div class="feat-label">Year Built</div>
+          <div class="feat-val">{{ property.year_built }}</div>
+        </div>
+      </div>
+      {% endif %}
+      {% if property.lot_size %}
+      <div class="feat-item">
+        <div class="feat-icon"><i class="fas fa-expand"></i></div>
+        <div>
+          <div class="feat-label">Lot Size</div>
+          <div class="feat-val">{{ property.lot_size }}</div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Description -->
+    <div class="sec-card">
+      <div class="sec-head">
+        <div class="sec-head-icon"><i class="fas fa-align-left"></i></div>
+        <h3 class="sec-title">About This Property</h3>
+      </div>
+      <div class="sec-body">
+        <div class="desc-text" id="descText" style="max-height:120px; overflow:hidden; transition:max-height .4s ease;">
+          {{ property.description|linebreaks }}
+        </div>
+        <button class="desc-more-btn" id="descToggle">
+          Read More <i class="fas fa-chevron-down"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Property Details -->
+    <div class="sec-card">
+      <div class="sec-head">
+        <div class="sec-head-icon"><i class="fas fa-list-ul"></i></div>
+        <h3 class="sec-title">Property Details</h3>
+      </div>
+      <div class="sec-body">
+        <div class="dg">
+          <div class="dg-item">
+            <div class="dg-icon"><i class="fas fa-home"></i></div>
+            <div>
+              <div class="dg-label">Property Type</div>
+              <div class="dg-value">{{ property.property_type.name|default:property.property_type }}</div>
+            </div>
+          </div>
+          <div class="dg-item">
+            <div class="dg-icon"><i class="fas fa-hammer"></i></div>
+            <div>
+              <div class="dg-label">Year Built</div>
+              <div class="dg-value">{{ property.year_built|default:"N/A" }}</div>
+            </div>
+          </div>
+          <div class="dg-item">
+            <div class="dg-icon"><i class="fas fa-car"></i></div>
+            <div>
+              <div class="dg-label">Garage</div>
+              <div class="dg-value">{{ property.garage|default:"N/A" }}</div>
+            </div>
+          </div>
+          <div class="dg-item">
+            <div class="dg-icon"><i class="fas fa-expand"></i></div>
+            <div>
+              <div class="dg-label">Lot Size</div>
+              <div class="dg-value">{{ property.lot_size|default:"N/A" }}</div>
+            </div>
+          </div>
+          <div class="dg-item">
+            <div class="dg-icon"><i class="fas fa-tag"></i></div>
+            <div>
+              <div class="dg-label">Price / Sq Ft</div>
+              <div class="dg-value">${{ property.price_per_sqft|floatformat:0|default:"N/A" }}</div>
+            </div>
+          </div>
+          <div class="dg-item">
+            <div class="dg-icon"><i class="fas fa-check-circle"></i></div>
+            <div>
+              <div class="dg-label">Status</div>
+              <div class="dg-value">{% if property.is_published %}Available{% else %}Not Available{% endif %}</div>
+            </div>
+          </div>
+          {% if property.floor_number %}
+          <div class="dg-item">
+            <div class="dg-icon"><i class="fas fa-layer-group"></i></div>
+            <div>
+              <div class="dg-label">Floor Number</div>
+              <div class="dg-value">{{ property.floor_number }}</div>
+            </div>
+          </div>
+          {% endif %}
+          {% if property.total_floors %}
+          <div class="dg-item">
+            <div class="dg-icon"><i class="fas fa-building"></i></div>
+            <div>
+              <div class="dg-label">Total Floors</div>
+              <div class="dg-value">{{ property.total_floors }}</div>
+            </div>
+          </div>
+          {% endif %}
+          {% if property.building_age %}
+          <div class="dg-item">
+            <div class="dg-icon"><i class="fas fa-clock"></i></div>
+            <div>
+              <div class="dg-label">Building Age</div>
+              <div class="dg-value">{{ property.building_age }} years</div>
+            </div>
+          </div>
+          {% endif %}
+          {% if property.maintenance_charges %}
+          <div class="dg-item">
+            <div class="dg-icon"><i class="fas fa-tools"></i></div>
+            <div>
+              <div class="dg-label">Maintenance</div>
+              <div class="dg-value">${{ property.maintenance_charges }}</div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Amenities -->
+    {% if property.amenities.all %}
+    <div class="sec-card">
+      <div class="sec-head">
+        <div class="sec-head-icon"><i class="fas fa-star"></i></div>
+        <h3 class="sec-title">Amenities & Features</h3>
+      </div>
+      <div class="sec-body">
+        <div class="am-grid">
+          {% for amenity in property.amenities.all %}
+          <div class="am-item">
+            <i class="fas fa-check"></i>
+            <span>{{ amenity.name }}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Location -->
+    <div class="sec-card">
+      <div class="sec-head">
+        <div class="sec-head-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <h3 class="sec-title">Location</h3>
+      </div>
+      <div class="sec-body">
+        <div class="map-placeholder" id="property-map"
+             data-lat="{{ property.latitude|default:'0' }}"
+             data-lng="{{ property.longitude|default:'0' }}"
+             data-address="{{ property.address }}, {{ property.city }}, {{ property.state }}">
+          <div class="map-icon-big"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="map-address">{{ property.address }}, {{ property.city }}, {{ property.state }} {{ property.zipcode|default:"" }}</div>
+          <button class="btn-directions" onclick="openGoogleMaps()">
+            <i class="fas fa-directions"></i> Get Directions
+          </button>
+        </div>
+
+        <!-- Nearby indicators (static demo — replace with real data if available) -->
+        <div class="nearby-strip">
+          <div class="nearby-item"><i class="fas fa-school"></i> School <span class="nearby-dist">~0.8 km</span></div>
+          <div class="nearby-item"><i class="fas fa-hospital"></i> Hospital <span class="nearby-dist">~1.2 km</span></div>
+          <div class="nearby-item"><i class="fas fa-subway"></i> Metro <span class="nearby-dist">~0.5 km</span></div>
+          <div class="nearby-item"><i class="fas fa-shopping-bag"></i> Mall <span class="nearby-dist">~2.0 km</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /pd-main -->
+
+  <!-- ─── SIDEBAR ─── -->
+  <div class="sidebar">
+
+    <!-- CTA Card -->
+    <div class="cta-card">
+      <div class="cta-top">
+        <div class="cta-price">${{ property.price|floatformat:0|default:"0" }}</div>
+        <div class="cta-sub">
+          {% if property.price_per_sqft %}${{ property.price_per_sqft|floatformat:0 }}/sqft · {% endif %}
+          Listed {{ property.list_date|date:"M Y" }}
+        </div>
+      </div>
+      <div class="cta-body">
+        <div class="cta-btns">
+          <button class="cta-btn primary call-agent" data-phone="99945 55962">
+            <i class="fas fa-phone-alt"></i> Call Agent
+          </button>
+          <a href="{% url 'mck_website:property_enquiry_page' %}?property={{ property.id }}" class="cta-btn outline">
+            <i class="fas fa-calendar-check"></i> Schedule Visit
+          </a>
+          <a href="https://wa.me/919994555962?text=Hi, I'm interested in {{ property.title|urlencode }}" target="_blank" class="cta-btn whatsapp-btn">
+            <i class="fab fa-whatsapp"></i> WhatsApp Us
+          </a>
+        </div>
+        <div class="cta-divider"></div>
+        <div class="cta-trust">
+          <div class="ct-item"><i class="fas fa-shield-alt"></i> Verified property listing</div>
+          <div class="ct-item"><i class="fas fa-check-circle"></i> No hidden charges</div>
+          <div class="ct-item"><i class="fas fa-user-check"></i> RERA registered agent</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Agent Card -->
+    <div class="agent-card">
+      <div class="ag-avatar">
+        {% if property.agent and property.agent.profile_image %}
+        <img src="{{ property.agent.profile_image.url }}" alt="{{ property.agent.name }}">
+        {% else %}
+        <i class="fas fa-user-tie"></i>
+        {% endif %}
+      </div>
+      <div>
+        <div class="ag-name">{{ property.agent.name|default:"Property Agent" }}</div>
+        <div class="ag-role">{{ property.agent.designation|default:"Real Estate Professional" }}</div>
+        <div class="ag-links">
+          <a href="tel:{{ property.agent.phone|default:'9994555962' }}" class="ag-link">
+            <i class="fas fa-phone"></i> {{ property.agent.phone|default:"99945 55962" }}
+          </a>
+          <a href="mailto:{{ property.agent.email|default:'info@squarebox.com' }}" class="ag-link" style="margin-left:10px;">
+            <i class="fas fa-envelope"></i> Email
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Enquiry Form -->
+   <!-- Quick Enquiry Form -->
+<div class="enq-card">
+  <div class="enq-head">
+    <div class="enq-title">Quick Enquiry</div>
+    <div class="enq-sub">Get a callback from our expert</div>
+  </div>
+  <div class="enq-body">
+    <form class="enq-form" id="propertyEnquiryForm" method="post" action="{% url 'mck_website:mck_ajax_enquiry_save' %}">
+      {% csrf_token %}
+      <input type="hidden" name="property_id" value="{{ property.id }}">
+      <div class="ef-group">
+        <label class="ef-label">Full Name</label>
+        <input type="text" class="ef-input" name="name" placeholder="Your name" required>
+      </div>
+      <div class="ef-group">
+        <label class="ef-label">Email</label>
+        <input type="email" class="ef-input" name="email" placeholder="your@email.com" required>
+      </div>
+      <div class="ef-group">
+        <label class="ef-label">Phone</label>
+        <input type="tel" class="ef-input" name="phone" placeholder="+91 XXXXX XXXXX">
+      </div>
+      <div class="ef-group">
+        <label class="ef-label">Message</label>
+        <textarea class="ef-textarea" name="message" rows="3" placeholder="I'm interested in this property…"></textarea>
+      </div>
+      <button type="submit" class="ef-submit">
+        Send Enquiry <i class="fas fa-paper-plane"></i>
+      </button>
+    </form>
+  </div>
+</div>
+
+    <!-- Share -->
+    <div class="share-card">
+      <div class="share-label">Share this property</div>
+      <div class="share-btns">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="sh-btn sh-fb"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ property.title }}" target="_blank" class="sh-btn sh-tw"><i class="fab fa-twitter"></i></a>
+        <a href="https://wa.me/?text={{ request.build_absolute_uri }}" target="_blank" class="sh-btn sh-wa"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/squarebox.co.in/" target="_blank" class="sh-btn sh-ig"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com/shareArticle?url={{ request.build_absolute_uri }}" target="_blank" class="sh-btn sh-lk"><i class="fab fa-linkedin-in"></i></a>
+        <button class="sh-btn sh-copy copy-link-btn" data-url="{{ request.build_absolute_uri }}"><i class="fas fa-link"></i></button>
+      </div>
+    </div>
+
+    <!-- Similar Properties -->
+    {% if similar_properties %}
+    <div class="similar-card">
+      <div class="sc-head"><div class="sc-title">Similar Properties</div></div>
+      <div class="sc-list">
+        {% for sim in similar_properties|slice:":3" %}
+        <a href="{% url 'mck_website:property_detail' sim.slug|default:sim.id %}" class="sc-item">
+          <div class="sc-thumb" style="background-image:url('{% if sim.images.first %}{{ sim.images.first.image.url }}{% else %}{% static 'images/default-property.jpg' %}{% endif %}');"></div>
+          <div>
+            <div class="sc-price">${{ sim.price|floatformat:0 }}</div>
+            <div class="sc-info">
+              {% if sim.bedrooms %}{{ sim.bedrooms }}bd{% endif %}
+              {% if sim.bathrooms %} · {{ sim.bathrooms }}ba{% endif %}
+              {% if sim.sqft %} · {{ sim.sqft }} sqft{% endif %}
+            </div>
+            <div class="sc-addr">{{ sim.city }}, {{ sim.state }}</div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+      <div class="sc-footer">
+        <a href="{% url 'mck_website:mck_property_page' %}?type={{ property.property_type.id }}" class="sc-more">
+          View All Similar <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+    {% endif %}
+
+  </div><!-- /sidebar -->
+</div><!-- /pd-layout -->
+
+<!-- ─── VIRTUAL TOUR MODAL ─── -->
+{% if property.virtual_tour_url %}
+<div class="modal" id="virtualTourModal">
+  <div class="modal-backdrop" id="modalClose"></div>
+  <div class="modal-box">
+    <div class="modal-hdr">
+      <h5>Virtual Tour — {{ property.title }}</h5>
+      <button class="modal-close" id="modalCloseBtn"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-bdy">
+      <iframe src="{{ property.virtual_tour_url }}" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!-- ─── FULLSCREEN VIEWER ─── -->
+<div class="fs-viewer" id="fsViewer">
+  <button class="fs-close" id="fsClose"><i class="fas fa-times"></i></button>
+  <img src="" id="fsImg" alt="">
+</div>
+
+<!-- ─── TOAST ─── -->
+<div class="toast" id="toastMsg"><i class="fas fa-check-circle"></i><span></span></div>
+
+<!-- Scripts -->
+<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 
-<!-- Include Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
 
-<!-- Include Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  // ── Swiper ──
+  const mainSwiper = new Swiper('.mainSwiper', {
+    loop: true,
+    speed: 700,
+    effect: 'fade',
+    fadeEffect: { crossFade: true },
+    autoplay: { delay: 5000, disableOnInteraction: false },
+    navigation: {
+      nextEl: '.swiper-next-main',
+      prevEl: '.swiper-prev-main',
+    },
+    on: {
+      slideChange: function(){
+        document.getElementById('imgCount').textContent =
+          (this.realIndex + 1) + ' / ' + this.slides.length;
+      }
+    }
+  });
 
-<!-- Include Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  // Side thumbs click → jump to slide
+  document.querySelectorAll('.side-thumb').forEach((th, i) => {
+    th.addEventListener('click', () => mainSwiper.slideToLoop(i + 1));
+  });
 
+  // ── Fullscreen ──
+  const fsViewer = document.getElementById('fsViewer');
+  const fsImg    = document.getElementById('fsImg');
+  function openFs(url){
+    if(!url) return;
+    fsImg.src = url;
+    fsViewer.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeFs(){
+    fsViewer.classList.remove('open');
+    fsImg.src = '';
+    document.body.style.overflow = '';
+  }
+  document.getElementById('fsClose').addEventListener('click', closeFs);
+  fsViewer.addEventListener('click', e => { if(e.target === fsViewer) closeFs(); });
+
+  document.querySelector('.btn-fullscreen-main').addEventListener('click', () => {
+    const active = document.querySelector('.mainSwiper .swiper-slide-active .g-slide');
+    if(active){
+      const url = active.style.backgroundImage.replace(/url\(["']?/, '').replace(/["']?\)/, '');
+      openFs(url);
+    }
+  });
+  document.querySelectorAll('.g-slide').forEach(sl => {
+    sl.addEventListener('click', () => {
+      const url = sl.style.backgroundImage.replace(/url\(["']?/, '').replace(/["']?\)/, '');
+      openFs(url);
+    });
+    sl.style.cursor = 'zoom-in';
+  });
+
+  // ── Virtual Tour Modal ──
+  const vtBtn = document.getElementById('openVirtualTour');
+  const vtModal = document.getElementById('virtualTourModal');
+  if(vtBtn && vtModal){
+    vtBtn.addEventListener('click', () => {
+      vtModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+    function closeModal(){
+      vtModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // ── Toast ──
+  function showToast(msg){
+    const t = document.getElementById('toastMsg');
+    t.querySelector('span').textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  // ── Favorites ──
+  document.querySelectorAll('.btn-favorite-bc, .btn-favorite').forEach(btn => {
+    btn.addEventListener('click', function(){
+      this.classList.toggle('active');
+      const ico = this.querySelector('i');
+      if(this.classList.contains('active')){
+        ico.classList.replace('far','fas');
+        ico.style.color = '#e74c3c';
+        showToast('Added to saved properties!');
+      } else {
+        ico.classList.replace('fas','far');
+        ico.style.color = '';
+        showToast('Removed from saved');
+      }
+    });
+  });
+
+  // ── Share / Copy link ──
+  document.querySelectorAll('.btn-share-bc, .btn-share').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const url = window.location.href;
+      if(navigator.share){
+        try { await navigator.share({ title:'{{ property.title|escapejs }}', url }); }
+        catch { copyLink(url); }
+      } else { copyLink(url); }
+    });
+  });
+  document.querySelectorAll('.copy-link-btn').forEach(btn => {
+    btn.addEventListener('click', () => copyLink(btn.dataset.url || window.location.href));
+  });
+  function copyLink(url){
+    navigator.clipboard.writeText(url).then(() => showToast('Link copied to clipboard!'));
+  }
+
+  // ── Call agent ──
+  document.querySelectorAll('.call-agent').forEach(btn => {
+    btn.addEventListener('click', () => {
+      window.location.href = 'tel:' + (btn.dataset.phone || '9994555962').replace(/\s/g,'');
+    });
+  });
+
+  // ── Description toggle ──
+  const descText = document.getElementById('descText');
+  const descToggle = document.getElementById('descToggle');
+  let expanded = false;
+  if(descText && descToggle){
+    descToggle.addEventListener('click', () => {
+      expanded = !expanded;
+      descText.style.maxHeight = expanded ? descText.scrollHeight + 'px' : '120px';
+      descToggle.innerHTML = expanded
+        ? 'Read Less <i class="fas fa-chevron-up"></i>'
+        : 'Read More <i class="fas fa-chevron-down"></i>';
+    });
+    // Hide button if content is short
+    if(descText.scrollHeight <= 130) descToggle.style.display = 'none';
+  }
+
+  // ── Google Maps ──
+  window.openGoogleMaps = function(){
+    const addr = '{{ property.address }}, {{ property.city }}, {{ property.state }}';
+    window.open('https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(addr), '_blank');
+  };
+
+  // ── Enquiry form AJAX ──
+  const form = document.getElementById('propertyEnquiryForm');
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const btn = form.querySelector('.ef-submit');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      fetch(this.action, {
+        method: 'POST',
+        body: new FormData(this),
+        headers: {'X-Requested-With': 'XMLHttpRequest'}
+      })
+      .then(r => r.json())
+      .then(d => {
+        if(d.success){ showToast('Enquiry sent! We'll be in touch.'); form.reset(); }
+        else showToast('Something went wrong. Try again.');
+      })
+      .catch(() => showToast('Error sending. Please try again.'))
+      .finally(() => { btn.innerHTML = 'Send Enquiry <i class="fas fa-paper-plane"></i>'; btn.disabled = false; });
+    });
+  }
+
+});
+</script>
 {% endblock %}

@@ -92,7 +92,7 @@ class PropertyCreateUpdateForm(forms.ModelForm):
 
     class Meta:
         model = models.Property
-        exclude = ['created_on', 'updated_on', 'created_by', 'updated_by', 'datamode']
+        exclude = [ 'user', 'created_on', 'updated_on', 'created_by', 'updated_by', 'datamode']
 
 class PropertyTypeCreateUpdateForm(forms.ModelForm):
 

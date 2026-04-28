@@ -38,6 +38,15 @@ class Property(models.Model):
         default='sale',
         verbose_name='Listing Type'
     )
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='properties',
+        db_index=True  # Add index for faster queries
+    )
+
     title = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=100)
@@ -91,14 +100,19 @@ class Property(models.Model):
     end_unit = models.CharField(max_length=3, choices=(('yes', 'Yes'), ('no', 'No')), null=True, blank=True)
     hoa_fee = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
-    created_by = models.CharField(max_length=8)
-    updated_by = models.CharField(max_length=8)
+    created_by = models.CharField(max_length=150, blank=True, null=True, db_index=True)
+    updated_by = models.CharField(max_length=150, blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     datamode = models.CharField(max_length=20, default='A', choices=gv.DATAMODE_CHOICES)
 
     class Meta:
         db_table = 'property'
+        indexes = [
+            models.Index(fields=['user', 'datamode']),
+            models.Index(fields=['created_by', 'datamode']),
+            models.Index(fields=['-updated_on']),
+        ]
 
     def __str__(self):
         return self.title
@@ -174,6 +188,15 @@ class Agent(models.Model):
 
 
 class Lead(models.Model):
+
+    property = models.ForeignKey(
+        Property, 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True, 
+        related_name='leads'
+    )
+    
     # property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='leads')
     name = models.CharField(max_length=100)
     email = models.EmailField()

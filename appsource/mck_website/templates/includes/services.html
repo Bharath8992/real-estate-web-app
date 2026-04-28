@@ -1,144 +1,289 @@
 {% load static %}
 <style>
-.services {
-    background: #fff;
-    
+.squarebox-services {
+    background: #FFF8E7;
+    padding: 60px 0;
     text-align: center;
+    border-top: 1px solid #FFE4A0;
+    border-bottom: 1px solid #FFE4A0;
 }
 
-.section-title {
-    font-size: 28px;
+.squarebox-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.squarebox-section-title {
+    font-size: 32px;
     font-weight: 700;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     color: #222;
+    letter-spacing: -0.3px;
+    position: relative;
+    display: inline-block;
 }
 
-.services-line {
+.squarebox-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: #E6A800;
+    border-radius: 2px;
+}
+
+/* Single row - horizontal scroll on mobile if needed, but flex wrap on desktop */
+.squarebox-services-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 60px;
+    align-items: center;
+    gap: 40px;
+    overflow-x: auto;
+    padding-bottom: 10px;
 }
 
-.service-item {
+/* For desktop, keep in one row without wrapping (if space permits) */
+@media (min-width: 1200px) {
+    .squarebox-services-grid {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 20px;
+    }
+    .squarebox-service-card {
+        flex: 1;
+        min-width: 0;
+    }
+}
+
+/* For tablets, allow wrapping but keep compact */
+@media (max-width: 1199px) and (min-width: 769px) {
+    .squarebox-services-grid {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        gap: 30px;
+        padding-bottom: 15px;
+        -webkit-overflow-scrolling: touch;
+    }
+    .squarebox-service-card {
+        flex: 0 0 auto;
+    }
+    .squarebox-services-grid::-webkit-scrollbar {
+        height: 4px;
+    }
+    .squarebox-services-grid::-webkit-scrollbar-track {
+        background: #f0e0c0;
+        border-radius: 10px;
+    }
+    .squarebox-services-grid::-webkit-scrollbar-thumb {
+        background: #E6A800;
+        border-radius: 10px;
+    }
+}
+
+/* Mobile: horizontal scroll */
+@media (max-width: 768px) {
+    .squarebox-services {
+        padding: 50px 0;
+    }
+    .squarebox-container {
+        padding: 0 20px;
+    }
+    .squarebox-services-grid {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        gap: 25px;
+        padding-bottom: 15px;
+        -webkit-overflow-scrolling: touch;
+    }
+    .squarebox-service-card {
+        flex: 0 0 auto;
+        width: 100px;
+    }
+    .squarebox-section-title {
+        font-size: 26px;
+        margin-bottom: 35px;
+    }
+    .squarebox-services-grid::-webkit-scrollbar {
+        height: 4px;
+    }
+    .squarebox-services-grid::-webkit-scrollbar-track {
+        background: #f0e0c0;
+        border-radius: 10px;
+    }
+    .squarebox-services-grid::-webkit-scrollbar-thumb {
+        background: #E6A800;
+        border-radius: 10px;
+    }
+}
+
+.squarebox-service-card {
     text-align: center;
-    transition: transform 0.3s ease, color 0.3s ease;
+    transition: all 0.3s ease;
     cursor: pointer;
+    text-decoration: none;
+    display: block;
 }
 
-.service-item:hover {
+.squarebox-service-card:hover {
     transform: translateY(-5px);
 }
 
-.service-icon {
-    font-size: 40px;
-    margin-bottom: 12px;
-    color: #29abff;
-    transition: color 0.3s ease;
-}
-
-.service-item:hover .service-icon {
-    color: #29abff;
-}
-
-.service-item h3 {
-    font-size: 16px;
-    font-weight: 600;
-    color: #333;
-    margin: 0;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .services-line {
-        gap: 40px;
-    }
-    .section-title {
-        font-size: 24px;
-    }
-}
-.service-icon {
-    width: 70px;  
-    height: 70px;
+.squarebox-service-icon {
+    width: 90px;
+    height: 90px;
     margin: 0 auto 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    border-radius: 15px; /* rounded corners for modern look */
+    background: #fff;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: 1px solid #FFE0A0;
+}
+
+.squarebox-service-card:hover .squarebox-service-icon {
+    border-color: #E6A800;
+    box-shadow: 0 8px 20px rgba(230,168,0,0.15);
+    transform: scale(1.02);
+}
+
+.squarebox-service-icon img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
     transition: transform 0.3s ease;
 }
 
-.service-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* keep aspect ratio */
-    transition: transform 0.3s ease;
+.squarebox-service-card:hover .squarebox-service-icon img {
+    transform: scale(1.08);
 }
 
-.service-item:hover .service-icon img {
-    transform: scale(1.1); /* zoom effect on hover */
+.squarebox-service-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    transition: color 0.3s ease;
 }
 
+.squarebox-service-card:hover h3 {
+    color: #E6A800;
+}
+
+/* Desktop larger screens - bigger icons */
+@media (min-width: 1400px) {
+    .squarebox-service-icon {
+        width: 105px;
+        height: 105px;
+    }
+    .squarebox-service-icon img {
+        width: 58px;
+        height: 58px;
+    }
+    .squarebox-service-card h3 {
+        font-size: 16px;
+    }
+    .squarebox-services-grid {
+        gap: 30px;
+    }
+}
+
+/* Small desktop */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .squarebox-service-icon {
+        width: 80px;
+        height: 80px;
+    }
+    .squarebox-service-icon img {
+        width: 45px;
+        height: 45px;
+    }
+    .squarebox-service-card h3 {
+        font-size: 14px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 991px) {
+    .squarebox-service-icon {
+        width: 75px;
+        height: 75px;
+    }
+    .squarebox-service-icon img {
+        width: 42px;
+        height: 42px;
+    }
+    .squarebox-service-card h3 {
+        font-size: 13px;
+    }
+}
 </style>
-<section class="services">
-  <div class="container">
-    <h2 class="section-title">Our Services</h2>
-    <div class="services-line">
+
+<section class="squarebox-services">
+  <div class="squarebox-container">
+    <h2 class="squarebox-section-title">Our Services</h2>
+    <div class="squarebox-services-grid">
 
       <!-- Buy -->
-      <a href="{% url 'mck_website:mck_property_page' %}" class="service-item">
-        <div class="service-icon">
-          <img src="https://cdn-icons-png.flaticon.com/512/619/619034.png" alt="Buy">
+      <a href="{% url 'mck_website:mck_property_page' %}" class="squarebox-service-card">
+        <div class="squarebox-service-icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/619/619034.png" alt="Buy Property">
         </div>
         <h3>Buy</h3>
       </a>
 
       <!-- Rent -->
-      <a href="{% url 'mck_website:mck_property_create_page' %}" class="service-item">
-        <div class="service-icon">
-          <img src="{% static 'images/section/sell-or-rent-property.png' %}" alt="Rent">
+      <a href="{% url 'mck_website:mck_property_create_page' %}" class="squarebox-service-card">
+        <div class="squarebox-service-icon">
+          <img src="{% static 'images/section/sell-or-rent-property.png' %}" alt="Rent Property">
         </div>
         <h3>Rent</h3>
       </a>
 
       <!-- Maintenance -->
-      <a href="{% url 'mck_website:property_maintenance_page' %}" class="service-item">
-        <div class="service-icon">
-          <img src="{% static 'images/section/property-management.png' %}" alt="Maintenance">
-
+      <a href="{% url 'mck_website:property_maintenance_page' %}" class="squarebox-service-card">
+        <div class="squarebox-service-icon">
+          <img src="{% static 'images/section/property-management.png' %}" alt="Property Maintenance">
         </div>
         <h3>Maintenance</h3>
       </a>
 
       <!-- Legal Services -->
-      <a href="{% url 'mck_website:property_legal_services_page' %}" class="service-item">
-        <div class="service-icon">
+      <a href="{% url 'mck_website:property_legal_services_page' %}" class="squarebox-service-card">
+        <div class="squarebox-service-icon">
           <img src="{% static 'images/section/property-legal-services.png' %}" alt="Legal Services">
         </div>
         <h3>Legal Services</h3>
       </a>
 
       <!-- Fencing -->
-      <a href="{% url 'mck_website:fencing_page' %}" class="service-item">
-        <div class="service-icon">
+      <a href="{% url 'mck_website:fencing_page' %}" class="squarebox-service-card">
+        <div class="squarebox-service-icon">
           <img src="{% static 'images/section/fencing.png' %}" alt="Fencing">
         </div>
         <h3>Fencing</h3>
       </a>
 
       <!-- Land Levelling -->
-      <a href="{% url 'mck_website:land_levelling_page' %}" class="service-item">
-        <div class="service-icon">
+      <a href="{% url 'mck_website:land_levelling_page' %}" class="squarebox-service-card">
+        <div class="squarebox-service-icon">
           <img src="{% static 'images/section/b.jpg' %}" alt="Land Levelling">
         </div>
         <h3>Land Levelling</h3>
       </a>    
 
       <!-- Solar -->
-      <a href="{% url 'mck_website:solar_page' %}" class="service-item">
-        <div class="service-icon">
-          <img src="{% static 'images/section/solar.png' %}" alt="Solar">
+      <a href="{% url 'mck_website:solar_page' %}" class="squarebox-service-card">
+        <div class="squarebox-service-icon">
+          <img src="{% static 'images/section/solar.png' %}" alt="Solar Solutions">
         </div>
         <h3>Solar</h3>
       </a>
@@ -146,4 +291,3 @@
     </div>
   </div>
 </section>
-

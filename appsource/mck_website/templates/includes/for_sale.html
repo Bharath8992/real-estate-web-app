@@ -1,341 +1,533 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SquareBox | Premium Real Estate</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
   <style>
-    * {
+    /* Reset with sale prefix */
+    .sale-重置 * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-.btn-custom {
-      margin-top: 25px;
-      background: #FADA5E;
-      color: #111111;
-      padding: 12px 28px;
-      border-radius: 4px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
     }
 
-    .btn-custom:hover {
-      background: #0e0d0d;
-      color: #fff;
-    }
     body {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-      color: #2c3e50;
-      line-height: 1.6;
-      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
+      background: #FFFFFF;
+      color: #1A1F36;
+      line-height: 1.5;
     }
 
-    .hero-s {
+    /* Professional Container */
+    .sale-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* Navigation */
+    .sale-navbar {
+      padding: 24px 0;
+      border-bottom: 1px solid #E4E7EC;
+      background: #FFFFFF;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .sale-nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      min-height: 100vh;
-      padding: 60px 8%;
-      position: relative;
-      overflow: hidden;
+      align-items: center;
     }
 
-    
-    .hero-s-content {
-      flex: 1;
-      max-width: 50%;
-      padding-right: 40px;
-      animation: fadeInLeft 1s ease forwards;
+
+  
+
+    .sale-nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
     }
 
-    .hero-s-tag {
-      font-size: 18px;
-      color: #ffbf00;
+    .sale-nav-links a {
+      text-decoration: none;
+      color: #4A5568;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .sale-nav-links a:hover {
+      color: #D4AF37;
+    }
+
+    .sale-nav-btn {
+      background: #1A1F36;
+      color: #FFFFFF !important;
+      padding: 10px 24px;
+      border-radius: 8px;
+      transition: background 0.2s !important;
+    }
+
+    .sale-nav-btn:hover {
+      background: #D4AF37 !important;
+      color: #1A1F36 !important;
+    }
+
+    /* Hero Section */
+    .sale-hero {
+      padding: 80px 0;
+      background: #FFF8E7;
+    }
+
+    .sale-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    /* Left Content */
+    .sale-hero-label {
+      display: inline-block;
+      font-size: 13px;
       font-weight: 600;
-      margin-bottom: 10px;
       text-transform: uppercase;
       letter-spacing: 2px;
+      color: #D4AF37;
+      margin-bottom: 20px;
     }
 
-    .hero-s-title {
-      font-size: 64px;
-      font-weight: 800;
-      color: #2c3e50;
+    .sale-hero-title {
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #1A1F36;
       margin-bottom: 20px;
-      line-height: 1.1;
+      letter-spacing: -1.5px;
+    }
+
+    .sale-hero-title-accent {
+      color: #D4AF37;
+    }
+
+    .sale-hero-description {
+      font-size: 18px;
+      color: #5A6B7F;
+      line-height: 1.6;
+      margin-bottom: 32px;
+      max-width: 480px;
+    }
+
+    /* Stats */
+    .sale-hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-bottom: 40px;
+      padding: 24px 0;
+      border-top: 1px solid #E4E7EC;
+      border-bottom: 1px solid #E4E7EC;
+    }
+
+    .sale-stat-item h3 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1A1F36;
+      margin-bottom: 4px;
+    }
+
+    .sale-stat-item p {
+      font-size: 14px;
+      color: #5A6B7F;
+      font-weight: 500;
+    }
+
+    /* Buttons */
+    .sale-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #1A1F36;
+      color: #FFFFFF;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .sale-btn-primary:hover {
+      background: #D4AF37;
+      transform: translateY(-2px);
+    }
+
+    .sale-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: transparent;
+      color: #1A1F36;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 1px solid #E4E7EC;
+    }
+
+    .sale-btn-secondary:hover {
+      border-color: #D4AF37;
+      color: #D4AF37;
+    }
+
+    .sale-btn-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Right Image */
+    .sale-hero-image {
       position: relative;
     }
 
-    .hero-s-title::after {
-      content: '';
+    .sale-hero-image img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .sale-image-badge {
       position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 80px;
-      height: 5px;
-      background: #ffbf00;
-      border-radius: 3px;
+      bottom: 24px;
+      left: 24px;
+      background: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
-    .hero-s-description {
+    .sale-image-badge i {
+      color: #D4AF37;
+      font-size: 20px;
+    }
+
+    .sale-image-badge span {
+      font-weight: 600;
+      color: #1A1F36;
+    }
+
+    /* Contact Cards */
+    .sale-contact-section {
+      background: #F8F9FC;
+      padding: 60px 0;
+      margin-top: 40px;
+    }
+
+    .sale-contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .sale-contact-card {
+      background: #FFFFFF;
+      padding: 32px;
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.3s;
+      border: 1px solid #E4E7EC;
+    }
+
+    .sale-contact-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      border-color: #D4AF37;
+    }
+
+    .sale-contact-icon {
+      width: 56px;
+      height: 56px;
+      background: #F8F9FC;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .sale-contact-icon i {
+      font-size: 24px;
+      color: #D4AF37;
+    }
+
+    .sale-contact-card h3 {
       font-size: 18px;
-      color: #555;
-      margin: 30px 0;
-      max-width: 450px;
-      line-height: 1.8;
+      font-weight: 600;
+      color: #1A1F36;
+      margin-bottom: 8px;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 16px 36px;
-      background: #ffbf00;
-      color: #fff;
-      border-radius: 50px;
-      font-size: 16px;
+    .sale-contact-card p {
+      color: #5A6B7F;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    .sale-contact-link {
+      color: #D4AF37;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: gap 0.2s;
+    }
+
+    .sale-contact-link:hover {
+      gap: 12px;
+    }
+
+    /* Featured Properties Section */
+    .sale-featured-section {
+      padding: 80px 0;
+      background: #FFFFFF;
+    }
+
+    .sale-section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .sale-section-label {
+      font-size: 13px;
       font-weight: 600;
       text-transform: uppercase;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(255, 191, 0, 0.3);
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
+      letter-spacing: 2px;
+      color: #D4AF37;
+      margin-bottom: 12px;
+      display: block;
     }
 
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: all 0.6s ease;
-      z-index: -1;
-    }
-
-    .btn:hover {
-      background: #2c3e50;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(44, 62, 80, 0.3);
-    }
-
-    .btn:hover::before {
-      left: 100%;
-    }
-
-    .hero-s-image {
-      flex: 1;
-      max-width: 50%;
-      position: relative;
-      animation: fadeInRight 1s ease forwards;
-    }
-
-    .hero-s-image img {
-      width: 100%;
-      border-radius: 20px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-      transition: all 0.5s ease;
-    }
-
-    .hero-s-image:hover img {
-      transform: scale(1.02);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Floating contact card */
-    .contact-overlay {
-      position: absolute;
-      bottom: 50px;
-      right: 30%;
-      background: #fff;
-      padding: 30px 40px;
-      border-radius: 16px;
-      display: flex;
-      gap: 60px;
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
-      align-items: center;
-      animation: fadeInUp 1s ease forwards 0.5s;
-      opacity: 0;
-      z-index: 10;
-      min-width: 400px;
-      max-width: 90%;
-    }
-
-    .contact-item {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .contact-label {
+    .sale-section-title {
+      font-size: 36px;
       font-weight: 700;
-      color: #2c3e50;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      color: #1A1F36;
+      margin-bottom: 16px;
     }
 
-    .contact-label i {
-      color: #ffbf00;
-    }
-
-    .contact-text a {
-      color: #2c3e50;
-      text-decoration: none;
+    .sale-section-description {
       font-size: 18px;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .contact-text a:hover {
-      color: #ffbf00;
-      transform: translateX(5px);
-    }
-
-    /* Animations */
-    @keyframes fadeInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes fadeInRight {
-      from {
-        opacity: 0;
-        transform: translateX(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      color: #5A6B7F;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     /* Responsive */
-    @media (max-width: 1200px) {
-      .contact-overlay {
-        right: 20%;
-      }
-    }
-
-    @media (max-width: 992px) {
-      .hero-s {
-        flex-direction: column;
-        text-align: center;
-        padding: 80px 5%;
-      }
-      
-      .hero-s-content {
-        max-width: 100%;
-        padding: 0;
-        margin-bottom: 40px;
-      }
-      
-      .hero-s-title::after {
-        left: 50%;
-        transform: translateX(-50%);
-      }
-      
-      .hero-s-image {
-        max-width: 100%;
-        margin-bottom: 30px;
-      }
-      
-      .contact-overlay {
-        position: relative;
-        bottom: auto;
-        right: auto;
-        margin: 30px auto 0;
-        flex-direction: column;
-        gap: 25px;
-        text-align: center;
-        min-width: unset;
-        width: 100%;
-        max-width: 500px;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .hero-s-title {
+    @media (max-width: 1024px) {
+      .sale-hero-title {
         font-size: 42px;
       }
       
-      .hero-s-description {
+      .sale-hero-grid {
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sale-container, .sale-nav-container {
+        padding: 0 20px;
+      }
+      
+      .sale-hero-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .sale-hero-title {
+        font-size: 36px;
+      }
+      
+      .sale-hero-stats {
+        gap: 24px;
+      }
+      
+      .sale-stat-item h3 {
+        font-size: 24px;
+      }
+      
+      .sale-contact-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .sale-nav-links {
+        display: none;
+      }
+      
+      .sale-navbar {
+        position: relative;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .sale-hero-title {
+        font-size: 28px;
+      }
+      
+      .sale-hero-description {
         font-size: 16px;
       }
       
-      .contact-overlay {
-        padding: 20px;
-        gap: 20px;
+      .sale-btn-group {
+        flex-direction: column;
       }
       
-      .contact-text a {
-        font-size: 16px;
+      .sale-btn-primary, .sale-btn-secondary {
+        justify-content: center;
       }
     }
   </style>
 </head>
 <body>
 
-  <section class="hero-s">
-    <!-- Left Content -->
-    <div class="hero-s-content">
-      <h1 class="hero-s-title">For Sale</h1>
-      <p class="hero-s-description">Finding a perfect property has never been this easy. Explore premium listings tailored for you.</p>
-      <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale" class="btn-custom">Check Properties</a>
-    </div>
 
-    <!-- Right Image -->
-    <div class="hero-s-image">
-      <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80" alt="Modern Home">
-    </div>
-
-    <!-- Contact Overlay -->
-    <div class="contact-overlay">
-      <div class="contact-item">
-        <span class="contact-label"><i class="fas fa-envelope"></i> Email</span>
-        <div class="contact-text"><a href="mailto:2024squarebox@gmail.com"><i class="fas fa-arrow-right"></i> 2024squarebox@gmail.com</a></div>
-      </div>
-      <div class="contact-item">
-        <span class="contact-label"><i class="fas fa-phone"></i> Phone</span>
-        <div class="contact-text"><a href="tel:+919994555962"><i class="fas fa-arrow-right"></i> +91 99945 55962</a></div>
+  <!-- Hero Section -->
+  <section class="sale-hero">
+    <div class="sale-container">
+      <div class="sale-hero-grid">
+        <!-- Left Column -->
+        <div class="sale-hero-content">
+          <span class="sale-hero-label">FOR SALE</span>
+          <h1 class="sale-hero-title">
+            Find Your <span class="sale-hero-title-accent">Dream Property</span> With Confidence
+          </h1>
+          <p class="sale-hero-description">
+            Discover exceptional homes and investment opportunities curated by industry experts. Your journey to premium real estate starts here.
+          </p>
+          
+          <div class="sale-hero-stats">
+            <div class="sale-stat-item">
+              <h3>500+</h3>
+              <p>Properties</p>
+            </div>
+            <div class="sale-stat-item">
+              <h3>98%</h3>
+              <p>Satisfied Clients</p>
+            </div>
+            <div class="sale-stat-item">
+              <h3>15+</h3>
+              <p>Years Experience</p>
+            </div>
+          </div>
+          
+          <div class="sale-btn-group">
+            <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale" class="sale-btn-primary">
+              Browse Properties
+              <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="#sale-contact" class="sale-btn-secondary">
+              Talk to Expert
+              <i class="fas fa-phone-alt"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Right Column -->
+        <div class="sale-hero-image">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80" alt="Luxury Property">
+          <div class="sale-image-badge">
+            <i class="fas fa-check-circle"></i>
+            <span>Verified Listings</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <script>
-    // Add some interactive effects
-    document.addEventListener('DOMContentLoaded', function() {
-      const contactItems = document.querySelectorAll('.contact-text a');
+  <!-- Contact Section -->
+  <section class="sale-contact-section" id="sale-contact">
+    <div class="sale-container">
+      <div class="sale-section-header">
+        <span class="sale-section-label">GET IN TOUCH</span>
+        <h2 class="sale-section-title">We're Here to Help</h2>
+        <p class="sale-section-description">Connect with our real estate experts for personalized assistance</p>
+      </div>
       
-      contactItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateX(5px)';
-        });
+      <div class="sale-contact-grid">
+        <div class="sale-contact-card">
+          <div class="sale-contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3>Email Us</h3>
+          <p>Get a response within 24 hours</p>
+          <a href="mailto:2024squarebox@gmail.com" class="sale-contact-link">
+           2024squarebox@gmail.com
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
         
-        item.addEventListener('mouseleave', function() {
-          this.style.transform = 'translateX(0)';
-        });
+        <div class="sale-contact-card">
+          <div class="sale-contact-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <h3>Call Us</h3>
+          <p>Mon-Sat, 9AM to 8PM</p>
+          <a href="tel:+919994555962" class="sale-contact-link">
+            +91 99945 55962
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        
+        <div class="sale-contact-card">
+          <div class="sale-contact-icon">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <h3>WhatsApp</h3>
+          <p>Quick responses on chat</p>
+          <a href="https://wa.me/919994555962" class="sale-contact-link">
+            Chat with us
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       });
     });
+    
+    // Add scroll effect to navbar
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.sale-navbar');
+      if (window.scrollY > 50) {
+        navbar.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)';
+      } else {
+        navbar.style.boxShadow = 'none';
+      }
+    });
   </script>
-
 </body>
+</html>

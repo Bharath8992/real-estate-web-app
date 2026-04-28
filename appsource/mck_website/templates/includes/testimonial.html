@@ -1,397 +1,259 @@
-<!-- 
-<section class="testimonials">
-    <div class="container">
-        <h2 class="section-title">What Our Clients Say</h2>
-        
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="testimonial-text">
-                    <i class="fa fa-quote-left quote-icon"></i>
-                    "SquareBox helped me find my dream home in just two weeks. Their service was exceptional and the process was smooth and hassle-free."
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-img">
-                        <img src="https://i.pinimg.com/736x/89/02/71/890271787e0502dc59293d27457f9af6.jpg" alt="Karthik">
-                    </div>
-                    <div class="author-info">
-                        <h4>Karthik R.</h4>
-                        <div class="author-role">Software Engineer, Chennai</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="testimonial-card">
-                <div class="testimonial-text">
-                    <i class="fa fa-quote-left quote-icon"></i>
-                    "As a first-time home buyer, I was nervous. The team at SquareBox guided me perfectly and found the ideal home for my budget."
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-img">
-                        <img src="https://i.pinimg.com/1200x/c3/0f/9f/c30f9fee0c03007a27cb8d897e7f7af4.jpg" alt="Meena">
-                    </div>
-                    <div class="author-info">
-                        <h4>Meena S.</h4>
-                        <div class="author-role">Marketing Manager, Coimbatore</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="testimonial-card">
-                <div class="testimonial-text">
-                    <i class="fa fa-quote-left quote-icon"></i>
-                    "I've worked with several real estate companies, but SquareBox stands out for professionalism and excellent property choices. Highly recommended!"
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-img">
-                        <img src="https://i.pinimg.com/736x/16/49/04/1649048de7bd98c0289944ad4318a0a2.jpg" alt="Vignesh">
-                    </div>
-                    <div class="author-info">
-                        <h4>Vignesh B.</h4>
-                        <div class="author-role">Business Owner, Madurai</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<style>
-
-.testimonials {
-    padding: 80px 0;
-    background: #f9f9f9;
-    font-family: 'Segoe UI', Arial, sans-serif;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 32px;
-    margin-bottom: 50px;
-    color: #222;
-    font-weight: 700;
-}
-
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-}
-
-.testimonial-card {
-    background-color: white;
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-}
-
-.testimonial-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
-}
-
-.testimonial-text {
-    font-style: italic;
-    margin-bottom: 25px;
-    color: #555;
-    position: relative;
-    padding-left: 30px;
-}
-
-.quote-icon {
-    color: #ff6f61;
-    margin-right: 10px;
-}
-
-.testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.author-img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid #ff6f61;
-    flex-shrink: 0;
-}
-
-.author-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.author-info h4 {
-    margin-bottom: 5px;
-    color: #222;
-    font-weight: 600;
-}
-
-.author-role {
-    color: #777;
-    font-size: 14px;
-}
-</style> -->
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonials | SquareBox</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #eed443;
-      --secondary: #030303;
-      --accent: #f72585;
-      --light: #f8f9fa;
-      --dark: #212529;
-      --gray: #6c757d;
+      --gold: #E8A800;
+      --gold-light: #FFD84D;
+      --gold-pale: #FFFBEC;
+      --ink: #0F1523;
+      --ink-soft: #2C3347;
+      --muted: #7A849A;
+      --line: #EAECF0;
+      --surface: #FFFFFF;
+      --bg: #F7F8FA;
+      --shadow-sm: 0 4px 14px rgba(0,0,0,.08);
+      --shadow-md: 0 12px 32px rgba(0,0,0,.10);
+      --r-md: 16px;
+      --r-lg: 24px;
     }
-    
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
-   
 
-    .testimonials {
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    .testimonials-section {
       padding: 80px 0;
-      position: relative;
+      background: var(--surface);
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Section Header */
+    .section-header {
       text-align: center;
-      width: 100%;
-      max-width: 1200px;
+      margin-bottom: 48px;
     }
 
-    /* .section-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 60px;
-      color: var(--dark);
-      position: relative;
+    .section-label {
       display: inline-block;
-    }
-    
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(to right, var(--primary), var(--accent));
-      border-radius: 2px;
-    } */
-
-    .testimonial-slide {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 50px;
-      flex-wrap: wrap;
-      max-width: 1000px;
-      margin: auto;
-      background: white;
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
-    
-    .swiper-slide-active .testimonial-slide {
-      transform: scale(1.02);
-    }
-
-    .testimonial-img {
-      flex: 0 0 220px;
-      position: relative;
-    }
-
-    .testimonial-img img {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 6px solid #fff;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-      transition: all 0.3s ease;
-    }
-    
-    .swiper-slide-active .testimonial-img img {
-      transform: scale(1.05);
-    }
-
-    .testimonial-img::before {
-      content: """;
-      position: absolute;
-      top: -20px;
-      right: -10px;
-      font-size: 120px;
-      color: var(--primary);
-      opacity: 0.1;
-      font-family: Georgia, serif;
-    }
-
-    .testimonial-content {
-      flex: 1;
-      text-align: left;
-      max-width: 550px;
-      position: relative;
-    }
-
-    .testimonial-content p.big-text {
-      font-size: 1.4rem;
-      font-weight: 500;
-      color: var(--dark);
-      margin-bottom: 25px;
-      line-height: 1.6;
-      position: relative;
-      padding-left: 30px;
-    }
-    
-    .testimonial-content p.big-text::before {
-      content: """;
-      position: absolute;
-      left: 0;
-      top: -20px;
-      font-size: 80px;
-      color: var(--primary);
-      opacity: 0.2;
-      font-family: Georgia, serif;
-      line-height: 1;
-    }
-
-    .testimonial-content p.small-text {
-      color: var(--gray);
-      font-size: 1rem;
-      margin-bottom: 20px;
-      line-height: 1.6;
-      padding-left: 20px;
-      border-left: 3px solid var(--primary);
-    }
-
-    .testimonial-author {
+      font-size: 13px;
       font-weight: 600;
-      color: var(--dark);
-      font-size: 1.1rem;
-      margin-top: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold);
+      margin-bottom: 12px;
     }
 
-    .testimonial-role {
-      font-size: 0.9rem;
-      color: var(--gray);
-      margin-top: 5px;
-    }
-    
-    .testimonial-role a {
-      color: var(--primary);
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    
-    .testimonial-role a:hover {
-      color: var(--accent);
-      text-decoration: underline;
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 16px;
     }
 
-    /* Rating stars */
-    .rating {
-      color: #ffc107;
-      margin: 15px 0;
-      font-size: 1.2rem;
+    .section-subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    /* Swiper customization */
+    /* Swiper Container */
     .swiper {
-      padding: 40px 10px 70px;
-    }
-    
-    .swiper-pagination {
-      bottom: 20px;
-    }
-    
-    .swiper-pagination-bullet {
-      width: 12px;
-      height: 12px;
-      background: #fff;
-      border: 2px solid var(--primary);
-      opacity: 1;
-    }
-    
-    .swiper-pagination-bullet-active {
-      background: var(--primary);
+      padding: 20px 0 60px;
     }
 
-    .swiper-button-next, .swiper-button-prev {
-      background: var(--primary);
-      color: #fff;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
+    /* Testimonial Card */
+    .testimonial-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      padding: 32px;
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .swiper-slide-active .testimonial-card {
+      border-color: var(--gold);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Quote Icon */
+    .quote-icon {
+      margin-bottom: 24px;
+    }
+
+    .quote-icon i {
+      font-size: 32px;
+      color: var(--gold);
+      opacity: 0.5;
+    }
+
+    /* Testimonial Text */
+    .testimonial-text {
+      flex: 1;
+    }
+
+    .testimonial-text p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin-bottom: 20px;
+      font-style: normal;
+    }
+
+    /* Rating */
+    .rating {
+      margin: 16px 0;
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+
+    .rating i {
+      margin-right: 2px;
+    }
+
+    /* Author Info */
+    .author-info {
       display: flex;
       align-items: center;
-      justify-content: center;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      gap: 16px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .author-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .author-details {
+      flex: 1;
+    }
+
+    .author-name {
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .author-role {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Verified Badge */
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #16A34A;
+      margin-top: 6px;
+    }
+
+    .verified-badge i {
+      font-size: 12px;
+    }
+
+    /* Navigation Buttons */
+    .swiper-button-next,
+    .swiper-button-prev {
+      width: 44px;
+      height: 44px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 50%;
       transition: all 0.3s ease;
     }
-    
-    .swiper-button-next:hover, .swiper-button-prev:hover {
-      background: var(--secondary);
-      transform: scale(1.1);
+
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      background: var(--gold);
+      border-color: var(--gold);
     }
 
     .swiper-button-next:after,
     .swiper-button-prev:after {
-      font-size: 20px;
+      font-size: 16px;
       font-weight: bold;
+      color: var(--ink);
     }
-    
-    /* Responsive design */
-    @media (max-width: 992px) {
-      .testimonial-slide {
-        flex-direction: column;
-        text-align: center;
-        padding: 30px;
+
+    .swiper-button-next:hover:after,
+    .swiper-button-prev:hover:after {
+      color: var(--surface);
+    }
+
+    /* Pagination */
+    .swiper-pagination-bullet {
+      width: 8px;
+      height: 8px;
+      background: var(--muted);
+      opacity: 0.5;
+    }
+
+    .swiper-pagination-bullet-active {
+      width: 24px;
+      border-radius: 4px;
+      background: var(--gold);
+      opacity: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .testimonials-section {
+        padding: 60px 0;
       }
-      
-      .testimonial-content {
-        text-align: center;
-      }
-      
-      .testimonial-content p.big-text {
-        padding-left: 0;
-      }
-      
-      .testimonial-content p.big-text::before {
-        left: 50%;
-        transform: translateX(-50%);
-      }
-      
-      .testimonial-content p.small-text {
-        border-left: none;
-        padding-left: 0;
-        border-top: 3px solid var(--primary);
-        padding-top: 10px;
-        display: inline-block;
-      }
-      
+
       .section-title {
-        font-size: 2rem;
+        font-size: 28px;
       }
-    }
-    
-    @media (max-width: 576px) {
-      .testimonial-img img {
-        width: 150px;
-        height: 150px;
+
+      .testimonial-card {
+        padding: 24px;
       }
-      
-      .testimonial-content p.big-text {
-        font-size: 1.1rem;
+
+      .testimonial-text p {
+        font-size: 16px;
       }
-      
-      .swiper-button-next, .swiper-button-prev {
+
+      .swiper-button-next,
+      .swiper-button-prev {
         display: none;
       }
     }
@@ -399,106 +261,255 @@
 </head>
 <body>
 
-<section class="testimonials container mb-5">
-  <h2 class="section-title">Words From Our Customers</h2>
-
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-
-      <!-- Slide 1 -->
-      <div class="swiper-slide">
-        <div class="testimonial-slide">
-          <div class="testimonial-img">
-            <img src="https://i.pinimg.com/736x/89/02/71/890271787e0502dc59293d27457f9af6.jpg" alt="Ronald J R">
-          </div>
-          <div class="testimonial-content">
-            <p class="big-text">
-              The service was exceptional from start to finish. I couldn't be happier with my experience!
-            </p>
-            <p class="small-text">
-              They helped me find exactly what I was looking for and made the whole process smooth and stress-free.
-            </p>
-            <div class="rating">
-              ★★★★★
-            </div>
-            <div class="testimonial-author">Ronald J R</div>
-            <div class="testimonial-role"><a href="#">Themeforest User</a></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Slide 2 -->
-      <div class="swiper-slide">
-        <div class="testimonial-slide">
-          <div class="testimonial-img">
-            <img src="https://i.pinimg.com/736x/16/49/04/1649048de7bd98c0289944ad4318a0a2.jpg" alt="Karthik R">
-          </div>
-          <div class="testimonial-content">
-            <p class="big-text">
-              SquareBox helped me find my dream home in just two weeks. Their service was exceptional!
-            </p>
-            <p class="small-text">
-              Professional, helpful, and caring throughout the entire journey. I would recommend them to anyone.
-            </p>
-            <div class="rating">
-              ★★★★★
-            </div>
-            <div class="testimonial-author">Karthik R.</div>
-            <div class="testimonial-role">Software Engineer</div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Slide 3 -->
-      <div class="swiper-slide">
-        <div class="testimonial-slide">
-          <div class="testimonial-img">
-            <img src="https://i.pinimg.com/1200x/c3/0f/9f/c30f9fee0c03007a27cb8d897e7f7af4.jpg" alt="Sarah M">
-          </div>
-          <div class="testimonial-content">
-            <p class="big-text">
-              I've never experienced customer service this good before. They went above and beyond!
-            </p>
-            <p class="small-text">
-              The attention to detail and personalized approach made all the difference in my decision.
-            </p>
-            <div class="rating">
-              ★★★★☆
-            </div>
-            <div class="testimonial-author">Sarah M.</div>
-            <div class="testimonial-role">Marketing Director</div>
-          </div>
-        </div>
-      </div>
-
+<section class="testimonials-section">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-label">TESTIMONIALS</span>
+      <h2 class="section-title">What Our Clients Say</h2>
     </div>
 
-    <!-- Pagination and Navigation -->
-    <div class="swiper-pagination"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+    <!-- Swiper -->
+    <div class="swiper testimonialsSwiper">
+      <div class="swiper-wrapper">
+        
+        <!-- Testimonial 1 - Chennai -->
+        <div class="swiper-slide">
+          <div class="testimonial-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            <div class="testimonial-text">
+              <p>"SquareBox helped me find my dream home in Chennai within just two weeks. Their team understood my requirements perfectly and showed me properties that matched exactly what I was looking for. The entire process was transparent and hassle-free."</p>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <div class="author-info">
+              <div class="author-avatar">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ramesh Kumar">
+              </div>
+              <div class="author-details">
+                <div class="author-name">Ramesh Kumar</div>
+                <div class="author-role">Homeowner, Chennai</div>
+                <div class="verified-badge">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Verified Purchase</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 - Coimbatore -->
+        <div class="swiper-slide">
+          <div class="testimonial-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            <div class="testimonial-text">
+              <p>"Excellent service from the SquareBox team in Coimbatore. They helped me find an investment property that perfectly matched my criteria. Their market knowledge and attention to detail is truly impressive. Highly recommended!"</p>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <div class="author-info">
+              <div class="author-avatar">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Vanitha Srinivasan">
+              </div>
+              <div class="author-details">
+                <div class="author-name">Vanitha Srinivasan</div>
+                <div class="author-role">Investor, Coimbatore</div>
+                <div class="verified-badge">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Verified Purchase</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 - Madurai -->
+        <div class="swiper-slide">
+          <div class="testimonial-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            <div class="testimonial-text">
+              <p>"I sold my property in Madurai through SquareBox and got a price higher than my expectations. Their marketing strategy and negotiation skills are outstanding. The team was professional, responsive, and made the entire process smooth."</p>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <div class="author-info">
+              <div class="author-avatar">
+                <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Sundaresan Pandian">
+              </div>
+              <div class="author-details">
+                <div class="author-name">Sundaresan Pandian</div>
+                <div class="author-role">Seller, Madurai</div>
+                <div class="verified-badge">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Verified Transaction</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 4 - Vellore -->
+        <div class="swiper-slide">
+          <div class="testimonial-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            <div class="testimonial-text">
+              <p>"SquareBox made my first land purchase in Vellore a great experience. Their legal guidance and documentation support was exceptional. They ensured every document was verified properly. A truly trustworthy real estate partner."</p>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+            </div>
+            <div class="author-info">
+              <div class="author-avatar">
+                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Lakshmi Narayanan">
+              </div>
+              <div class="author-details">
+                <div class="author-name">Lakshmi Narayanan</div>
+                <div class="author-role">Land Owner, Vellore</div>
+                <div class="verified-badge">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Verified Purchase</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 5 - Trichy -->
+        <div class="swiper-slide">
+          <div class="testimonial-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            <div class="testimonial-text">
+              <p>"As a first-time home buyer in Trichy, I was nervous about the process. SquareBox's team guided me through every step, answered all my questions patiently, and negotiated a great deal. I couldn't be happier with my new home!"</p>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <div class="author-info">
+              <div class="author-avatar">
+                <img src="https://randomuser.me/api/portraits/men/89.jpg" alt="Anand Murugesan">
+              </div>
+              <div class="author-details">
+                <div class="author-name">Anand Murugesan</div>
+                <div class="author-role">First-Time Buyer, Trichy</div>
+                <div class="verified-badge">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Verified Purchase</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 6 - Salem -->
+        <div class="swiper-slide">
+          <div class="testimonial-card">
+            <div class="quote-icon">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            <div class="testimonial-text">
+              <p>"I've worked with several real estate agencies in Salem, but SquareBox stands out. Their transparency, communication, and dedication to finding the right property for their clients is unmatched. Will definitely use them again."</p>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <div class="author-info">
+              <div class="author-avatar">
+                <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Divya Prakash">
+              </div>
+              <div class="author-details">
+                <div class="author-name">Divya Prakash</div>
+                <div class="author-role">Investor, Salem</div>
+                <div class="verified-badge">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Verified Purchase</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigation & Pagination -->
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
   </div>
 </section>
 
-<!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-
 <script>
-  var swiper = new Swiper(".mySwiper", {
-    loop: true,
-    spaceBetween: 30,
-    centeredSlides: true,
-    autoplay: {
-      delay: 6000,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
+  document.addEventListener('DOMContentLoaded', function() {
+    const swiper = new Swiper('.testimonialsSwiper', {
+      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 24,
+      centeredSlides: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 24,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 32,
+        },
+      },
+      effect: 'slide',
+      speed: 800,
+    });
   });
 </script>
+
+</body>
+</html>

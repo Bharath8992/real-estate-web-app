@@ -1,76 +1,216 @@
-2025-08-28 15:57:42,871 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : run
-2025-08-28 15:57:42,872 INFO Starting ...
-2025-08-28 15:57:42,872 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : dropDatabase
-2025-08-28 15:57:42,872 INFO django.db.backends.sqlite3
-2025-08-28 15:57:42,872 DEBUG dropping database...G:\square_box\appsource\mck_squarebox.sqlite3
-2025-08-28 15:57:42,873 DEBUG dropped database...G:\square_box\appsource\mck_squarebox.sqlite3
-2025-08-28 15:57:42,873 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : dropDatabase in 0:00:00.000999 seconds
-2025-08-28 15:57:42,873 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : createDatabase
-2025-08-28 15:57:42,873 DEBUG creating database...G:\square_box\appsource\mck_squarebox.sqlite3
-2025-08-28 15:57:42,874 DEBUG created database...G:\square_box\appsource\mck_squarebox.sqlite3
-2025-08-28 15:57:42,874 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : createDatabase in 0:00:00.000999 seconds
-2025-08-28 15:57:42,874 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : run_migrations
-2025-08-28 15:57:42,886 ERROR Traceback (most recent call last):
-  File "G:\square_box\appsource\scripts\script_db_init.py", line 100, in run_migrations
-    for apps in all_app_list:
-                ^^^^^^^^^^^^
-NameError: name 'all_app_list' is not defined
-
-2025-08-28 15:57:42,886 ERROR Function 'run_migrations' raised NameError with error 'name 'all_app_list' is not defined'
-2025-08-28 15:57:42,886 ERROR Function 'run' raised NameError with error 'name 'all_app_list' is not defined'
-2025-08-28 15:58:32,761 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : run
-2025-08-28 15:58:32,761 INFO Starting ...
-2025-08-28 15:58:32,761 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : dropDatabase
-2025-08-28 15:58:32,761 INFO django.db.backends.sqlite3
-2025-08-28 15:58:32,761 DEBUG dropping database...G:\square_box\appsource\mck_squarebox.sqlite3
-2025-08-28 15:58:32,761 DEBUG dropped database...G:\square_box\appsource\mck_squarebox.sqlite3
-2025-08-28 15:58:32,761 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : dropDatabase in 0:00:00 seconds
-2025-08-28 15:58:32,761 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : createDatabase
-2025-08-28 15:58:32,761 DEBUG creating database...G:\square_box\appsource\mck_squarebox.sqlite3
-2025-08-28 15:58:32,761 DEBUG created database...G:\square_box\appsource\mck_squarebox.sqlite3
-2025-08-28 15:58:32,761 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : createDatabase in 0:00:00 seconds
-2025-08-28 15:58:32,761 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : run_migrations
-2025-08-28 15:58:39,468 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : run_migrations in 0:00:06.707645 seconds
-2025-08-28 15:58:39,468 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : create_authusers
-2025-08-28 15:58:40,781 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : create_authusers in 0:00:01.312780 seconds
-2025-08-28 15:58:40,781 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : build_fixtures
-2025-08-28 15:58:40,782 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
-2025-08-28 15:58:40,782 WARNING fixture_path: G:\square_box\appsource\mck_master\fixtures\xlsx\mck_master.xlsx - Not Found
-2025-08-28 15:58:40,782 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
-2025-08-28 15:58:40,783 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
-2025-08-28 15:58:40,784 WARNING fixture_path: G:\square_box\appsource\mck_auth\fixtures\xlsx\mck_auth.xlsx - Not Found
-2025-08-28 15:58:40,784 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00.001093 seconds
-2025-08-28 15:58:40,785 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
-2025-08-28 15:58:40,785 WARNING fixture_path: G:\square_box\appsource\mck_admin_console\fixtures\xlsx\mck_admin_console.xlsx - Not Found
-2025-08-28 15:58:40,785 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
-2025-08-28 15:58:40,786 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
-2025-08-28 15:58:40,786 WARNING fixture_path: G:\square_box\appsource\mck_website\fixtures\xlsx\mck_website.xlsx - Not Found
-2025-08-28 15:58:40,786 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
-2025-08-28 15:58:40,787 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : build_fixtures in 0:00:00.005924 seconds
-2025-08-28 15:58:40,787 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : run_fixtures
-2025-08-28 15:58:40,787 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
-2025-08-28 15:58:40,787 INFO G:\square_box\appsource\mck_master\fixtures\json\dxe_master-00-country.json
-2025-08-28 15:58:41,373 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.586182 seconds
-2025-08-28 15:58:41,373 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
-2025-08-28 15:58:41,373 INFO G:\square_box\appsource\mck_master\fixtures\json\dxe_master-01-state.json
-2025-08-28 15:58:41,625 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.252003 seconds
-2025-08-28 15:58:41,625 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
-2025-08-28 15:58:41,625 INFO G:\square_box\appsource\mck_master\fixtures\json\dxe_master-02-supportpagecontent.json
-2025-08-28 15:58:42,027 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.401367 seconds
-2025-08-28 15:58:42,028 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
-2025-08-28 15:58:42,028 INFO G:\square_box\appsource\mck_auth\fixtures\json\dxe_auth-00-accounttype.json
-2025-08-28 15:58:42,160 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.132096 seconds
-2025-08-28 15:58:42,160 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
-2025-08-28 15:58:42,160 INFO G:\square_box\appsource\mck_auth\fixtures\json\dxe_auth-01-accounttyperole.json
-2025-08-28 15:58:42,285 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.125557 seconds
-2025-08-28 15:58:42,286 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : run_fixtures in 0:00:01.499208 seconds
-2025-08-28 15:58:42,286 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : create_superuser_account
-2025-08-28 15:58:42,726 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : create_superuser_account in 0:00:00.439279 seconds
-2025-08-28 15:58:42,726 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\generate_master_permission.py'] : generate_master_permission
-2025-08-28 15:58:49,123 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\generate_master_permission.py'] : generate_master_permission in 0:00:06.397765 seconds
-2025-08-28 15:58:49,123 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\update_mck_role_master_permissions.py'] : update_role_master_permission
-2025-08-28 15:58:56,714 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\update_mck_role_master_permissions.py'] : update_role_master_permission in 0:00:07.590671 seconds
-2025-08-28 15:58:56,714 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : create_company_profile
-2025-08-28 15:58:58,262 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : create_company_profile in 0:00:01.548164 seconds
-2025-08-28 15:58:58,262 INFO End !!!
-2025-08-28 15:58:58,262 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : run in 0:00:25.501436 seconds
+2026-04-28 13:16:51,661 INFO Starting ...
+2026-04-28 13:16:51,669 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : dropDatabase
+2026-04-28 13:16:51,669 INFO django.db.backends.sqlite3
+2026-04-28 13:16:51,669 DEBUG dropping database...D:\Bharath\wensite\Square-Box\appsource\mck_squarebox.sqlite3
+2026-04-28 13:16:51,669 DEBUG dropped database...D:\Bharath\wensite\Square-Box\appsource\mck_squarebox.sqlite3
+2026-04-28 13:16:51,669 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : dropDatabase in 0:00:00 seconds
+2026-04-28 13:16:51,669 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : createDatabase
+2026-04-28 13:16:51,669 DEBUG creating database...D:\Bharath\wensite\Square-Box\appsource\mck_squarebox.sqlite3
+2026-04-28 13:16:51,672 DEBUG created database...D:\Bharath\wensite\Square-Box\appsource\mck_squarebox.sqlite3
+2026-04-28 13:16:51,672 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : createDatabase in 0:00:00.002982 seconds
+2026-04-28 13:16:51,672 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : run_migrations
+2026-04-28 13:16:52,288 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : run_migrations in 0:00:00.616937 seconds
+2026-04-28 13:16:52,288 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_authusers
+2026-04-28 13:16:52,603 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_authusers in 0:00:00.314474 seconds
+2026-04-28 13:16:52,603 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : build_fixtures
+2026-04-28 13:16:52,603 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-04-28 13:16:52,603 WARNING fixture_path: D:\Bharath\wensite\Square-Box\appsource\mck_master\fixtures\xlsx\mck_master.xlsx - Not Found
+2026-04-28 13:16:52,603 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2026-04-28 13:16:52,603 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-04-28 13:16:52,603 WARNING fixture_path: D:\Bharath\wensite\Square-Box\appsource\mck_auth\fixtures\xlsx\mck_auth.xlsx - Not Found
+2026-04-28 13:16:52,603 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2026-04-28 13:16:52,603 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-04-28 13:16:52,603 WARNING fixture_path: D:\Bharath\wensite\Square-Box\appsource\mck_admin_console\fixtures\xlsx\mck_admin_console.xlsx - Not Found
+2026-04-28 13:16:52,603 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2026-04-28 13:16:52,603 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-04-28 13:16:52,603 WARNING fixture_path: D:\Bharath\wensite\Square-Box\appsource\mck_website\fixtures\xlsx\mck_website.xlsx - Not Found
+2026-04-28 13:16:52,603 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2026-04-28 13:16:52,603 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : build_fixtures in 0:00:00 seconds
+2026-04-28 13:16:52,603 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : run_fixtures
+2026-04-28 13:16:52,603 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:16:52,603 INFO D:\Bharath\wensite\Square-Box\appsource\mck_master\fixtures\json\dxe_master-00-country.json
+2026-04-28 13:16:52,704 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.100634 seconds
+2026-04-28 13:16:52,704 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:16:52,704 INFO D:\Bharath\wensite\Square-Box\appsource\mck_master\fixtures\json\dxe_master-01-state.json
+2026-04-28 13:16:52,721 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.017740 seconds
+2026-04-28 13:16:52,721 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:16:52,721 INFO D:\Bharath\wensite\Square-Box\appsource\mck_master\fixtures\json\dxe_master-02-supportpagecontent.json
+2026-04-28 13:16:52,721 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00 seconds
+2026-04-28 13:16:52,721 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:16:52,721 INFO D:\Bharath\wensite\Square-Box\appsource\mck_auth\fixtures\json\dxe_auth-00-accounttype.json
+2026-04-28 13:16:52,736 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.014732 seconds
+2026-04-28 13:16:52,736 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:16:52,736 INFO D:\Bharath\wensite\Square-Box\appsource\mck_auth\fixtures\json\dxe_auth-01-accounttyperole.json
+2026-04-28 13:16:52,741 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.005460 seconds
+2026-04-28 13:16:52,741 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : run_fixtures in 0:00:00.138566 seconds
+2026-04-28 13:16:52,741 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_superuser_account
+2026-04-28 13:16:52,755 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_superuser_account in 0:00:00.013312 seconds
+2026-04-28 13:16:52,755 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\generate_master_permission.py'] : generate_master_permission
+2026-04-28 13:16:52,911 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\generate_master_permission.py'] : generate_master_permission in 0:00:00.156637 seconds
+2026-04-28 13:16:52,911 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\update_mck_role_master_permissions.py'] : update_role_master_permission
+2026-04-28 13:16:53,027 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\update_mck_role_master_permissions.py'] : update_role_master_permission in 0:00:00.115621 seconds
+2026-04-28 13:16:53,027 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_company_profile
+2026-04-28 13:16:53,329 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_company_profile in 0:00:00.302387 seconds
+2026-04-28 13:16:53,329 INFO End !!!
+2026-04-28 13:24:09,091 INFO Starting ...
+2026-04-28 13:24:09,091 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : dropDatabase
+2026-04-28 13:24:09,091 INFO django.db.backends.sqlite3
+2026-04-28 13:24:09,091 DEBUG dropping database...D:\Bharath\wensite\Square-Box\appsource\mck_squarebox.sqlite3
+2026-04-28 13:24:09,091 DEBUG dropped database...D:\Bharath\wensite\Square-Box\appsource\mck_squarebox.sqlite3
+2026-04-28 13:24:09,091 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : dropDatabase in 0:00:00 seconds
+2026-04-28 13:24:09,091 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : createDatabase
+2026-04-28 13:24:09,091 DEBUG creating database...D:\Bharath\wensite\Square-Box\appsource\mck_squarebox.sqlite3
+2026-04-28 13:24:09,091 DEBUG created database...D:\Bharath\wensite\Square-Box\appsource\mck_squarebox.sqlite3
+2026-04-28 13:24:09,091 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : createDatabase in 0:00:00 seconds
+2026-04-28 13:24:09,091 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : run_migrations
+2026-04-28 13:24:09,811 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : run_migrations in 0:00:00.720024 seconds
+2026-04-28 13:24:09,811 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_authusers
+2026-04-28 13:24:10,134 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_authusers in 0:00:00.322355 seconds
+2026-04-28 13:24:10,134 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : build_fixtures
+2026-04-28 13:24:10,134 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-04-28 13:24:10,135 WARNING fixture_path: D:\Bharath\wensite\Square-Box\appsource\mck_master\fixtures\xlsx\mck_master.xlsx - Not Found
+2026-04-28 13:24:10,135 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00.000624 seconds
+2026-04-28 13:24:10,135 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-04-28 13:24:10,135 WARNING fixture_path: D:\Bharath\wensite\Square-Box\appsource\mck_auth\fixtures\xlsx\mck_auth.xlsx - Not Found
+2026-04-28 13:24:10,135 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2026-04-28 13:24:10,136 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-04-28 13:24:10,136 WARNING fixture_path: D:\Bharath\wensite\Square-Box\appsource\mck_admin_console\fixtures\xlsx\mck_admin_console.xlsx - Not Found
+2026-04-28 13:24:10,136 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2026-04-28 13:24:10,136 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-04-28 13:24:10,136 WARNING fixture_path: D:\Bharath\wensite\Square-Box\appsource\mck_website\fixtures\xlsx\mck_website.xlsx - Not Found
+2026-04-28 13:24:10,136 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2026-04-28 13:24:10,136 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : build_fixtures in 0:00:00.002064 seconds
+2026-04-28 13:24:10,136 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : run_fixtures
+2026-04-28 13:24:10,136 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:24:10,136 INFO D:\Bharath\wensite\Square-Box\appsource\mck_master\fixtures\json\dxe_master-00-country.json
+2026-04-28 13:24:10,249 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.113042 seconds
+2026-04-28 13:24:10,250 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:24:10,250 INFO D:\Bharath\wensite\Square-Box\appsource\mck_master\fixtures\json\dxe_master-01-state.json
+2026-04-28 13:24:10,267 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.017327 seconds
+2026-04-28 13:24:10,267 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:24:10,267 INFO D:\Bharath\wensite\Square-Box\appsource\mck_master\fixtures\json\dxe_master-02-supportpagecontent.json
+2026-04-28 13:24:10,278 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.010895 seconds
+2026-04-28 13:24:10,278 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:24:10,278 INFO D:\Bharath\wensite\Square-Box\appsource\mck_auth\fixtures\json\dxe_auth-00-accounttype.json
+2026-04-28 13:24:10,283 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.005348 seconds
+2026-04-28 13:24:10,283 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:24:10,283 INFO D:\Bharath\wensite\Square-Box\appsource\mck_auth\fixtures\json\dxe_auth-01-accounttyperole.json
+2026-04-28 13:24:10,293 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.009526 seconds
+2026-04-28 13:24:10,294 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : run_fixtures in 0:00:00.158137 seconds
+2026-04-28 13:24:10,294 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_superuser_account
+2026-04-28 13:24:10,312 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_superuser_account in 0:00:00.018256 seconds
+2026-04-28 13:24:10,312 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\generate_master_permission.py'] : generate_master_permission
+2026-04-28 13:24:10,527 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\generate_master_permission.py'] : generate_master_permission in 0:00:00.215109 seconds
+2026-04-28 13:24:10,527 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\update_mck_role_master_permissions.py'] : update_role_master_permission
+2026-04-28 13:24:10,650 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\update_mck_role_master_permissions.py'] : update_role_master_permission in 0:00:00.123182 seconds
+2026-04-28 13:24:10,650 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_company_profile
+2026-04-28 13:24:10,974 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_company_profile in 0:00:00.322146 seconds
+2026-04-28 13:24:10,974 INFO End !!!
+2026-04-28 13:53:26,866 INFO Starting ...
+2026-04-28 13:53:26,866 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : dropDatabase
+2026-04-28 13:53:26,866 INFO django.db.backends.sqlite3
+2026-04-28 13:53:26,866 DEBUG dropping database...D:\Bharath\wensite\Square-Box\appsource\mck_squarebox.sqlite3
+2026-04-28 13:53:26,866 DEBUG dropped database...D:\Bharath\wensite\Square-Box\appsource\mck_squarebox.sqlite3
+2026-04-28 13:53:26,866 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : dropDatabase in 0:00:00 seconds
+2026-04-28 13:53:26,866 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : createDatabase
+2026-04-28 13:53:26,866 DEBUG creating database...D:\Bharath\wensite\Square-Box\appsource\mck_squarebox.sqlite3
+2026-04-28 13:53:26,866 DEBUG created database...D:\Bharath\wensite\Square-Box\appsource\mck_squarebox.sqlite3
+2026-04-28 13:53:26,876 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : createDatabase in 0:00:00.010010 seconds
+2026-04-28 13:53:26,876 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : run_migrations
+2026-04-28 13:53:27,693 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : run_migrations in 0:00:00.817431 seconds
+2026-04-28 13:53:27,693 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_authusers
+2026-04-28 13:53:28,039 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_authusers in 0:00:00.346017 seconds
+2026-04-28 13:53:28,039 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : build_fixtures
+2026-04-28 13:53:28,039 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-04-28 13:53:28,039 WARNING fixture_path: D:\Bharath\wensite\Square-Box\appsource\mck_master\fixtures\xlsx\mck_master.xlsx - Not Found
+2026-04-28 13:53:28,039 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2026-04-28 13:53:28,039 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-04-28 13:53:28,039 WARNING fixture_path: D:\Bharath\wensite\Square-Box\appsource\mck_auth\fixtures\xlsx\mck_auth.xlsx - Not Found
+2026-04-28 13:53:28,039 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2026-04-28 13:53:28,046 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-04-28 13:53:28,046 WARNING fixture_path: D:\Bharath\wensite\Square-Box\appsource\mck_admin_console\fixtures\xlsx\mck_admin_console.xlsx - Not Found
+2026-04-28 13:53:28,046 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2026-04-28 13:53:28,046 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-04-28 13:53:28,046 WARNING fixture_path: D:\Bharath\wensite\Square-Box\appsource\mck_website\fixtures\xlsx\mck_website.xlsx - Not Found
+2026-04-28 13:53:28,046 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2026-04-28 13:53:28,046 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : build_fixtures in 0:00:00.006750 seconds
+2026-04-28 13:53:28,046 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : run_fixtures
+2026-04-28 13:53:28,046 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:53:28,046 INFO D:\Bharath\wensite\Square-Box\appsource\mck_master\fixtures\json\dxe_master-00-country.json
+2026-04-28 13:53:28,126 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.080682 seconds
+2026-04-28 13:53:28,126 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:53:28,126 INFO D:\Bharath\wensite\Square-Box\appsource\mck_master\fixtures\json\dxe_master-01-state.json
+2026-04-28 13:53:28,142 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.015300 seconds
+2026-04-28 13:53:28,142 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:53:28,142 INFO D:\Bharath\wensite\Square-Box\appsource\mck_master\fixtures\json\dxe_master-02-supportpagecontent.json
+2026-04-28 13:53:28,146 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.004034 seconds
+2026-04-28 13:53:28,146 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:53:28,146 INFO D:\Bharath\wensite\Square-Box\appsource\mck_auth\fixtures\json\dxe_auth-00-accounttype.json
+2026-04-28 13:53:28,156 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.010077 seconds
+2026-04-28 13:53:28,156 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:53:28,156 INFO D:\Bharath\wensite\Square-Box\appsource\mck_auth\fixtures\json\dxe_auth-01-accounttyperole.json
+2026-04-28 13:53:28,166 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.009697 seconds
+2026-04-28 13:53:28,166 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : run_fixtures in 0:00:00.119790 seconds
+2026-04-28 13:53:28,166 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_superuser_account
+2026-04-28 13:53:28,176 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_superuser_account in 0:00:00.010208 seconds
+2026-04-28 13:53:28,176 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\generate_master_permission.py'] : generate_master_permission
+2026-04-28 13:53:28,382 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\generate_master_permission.py'] : generate_master_permission in 0:00:00.205750 seconds
+2026-04-28 13:53:28,382 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\update_mck_role_master_permissions.py'] : update_role_master_permission
+2026-04-28 13:53:28,512 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\update_mck_role_master_permissions.py'] : update_role_master_permission in 0:00:00.130208 seconds
+2026-04-28 13:53:28,512 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_company_profile
+2026-04-28 13:53:28,822 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_company_profile in 0:00:00.310294 seconds
+2026-04-28 13:53:28,823 INFO End !!!
+2026-04-28 13:54:25,356 INFO Starting ...
+2026-04-28 13:54:25,356 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : dropDatabase
+2026-04-28 13:54:25,356 INFO django.db.backends.sqlite3
+2026-04-28 13:54:25,356 DEBUG dropping database...D:\Bharath\wensite\Square-Box\appsource\mck_squarebox.sqlite3
+2026-04-28 13:54:25,356 DEBUG dropped database...D:\Bharath\wensite\Square-Box\appsource\mck_squarebox.sqlite3
+2026-04-28 13:54:25,356 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : dropDatabase in 0:00:00 seconds
+2026-04-28 13:54:25,356 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : createDatabase
+2026-04-28 13:54:25,356 DEBUG creating database...D:\Bharath\wensite\Square-Box\appsource\mck_squarebox.sqlite3
+2026-04-28 13:54:25,356 DEBUG created database...D:\Bharath\wensite\Square-Box\appsource\mck_squarebox.sqlite3
+2026-04-28 13:54:25,356 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : createDatabase in 0:00:00 seconds
+2026-04-28 13:54:25,356 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : run_migrations
+2026-04-28 13:54:26,028 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : run_migrations in 0:00:00.672633 seconds
+2026-04-28 13:54:26,028 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_authusers
+2026-04-28 13:54:26,332 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_authusers in 0:00:00.304023 seconds
+2026-04-28 13:54:26,332 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : build_fixtures
+2026-04-28 13:54:26,332 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-04-28 13:54:26,332 WARNING fixture_path: D:\Bharath\wensite\Square-Box\appsource\mck_master\fixtures\xlsx\mck_master.xlsx - Not Found
+2026-04-28 13:54:26,332 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2026-04-28 13:54:26,332 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-04-28 13:54:26,332 WARNING fixture_path: D:\Bharath\wensite\Square-Box\appsource\mck_auth\fixtures\xlsx\mck_auth.xlsx - Not Found
+2026-04-28 13:54:26,332 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2026-04-28 13:54:26,332 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-04-28 13:54:26,336 WARNING fixture_path: D:\Bharath\wensite\Square-Box\appsource\mck_admin_console\fixtures\xlsx\mck_admin_console.xlsx - Not Found
+2026-04-28 13:54:26,336 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00.003327 seconds
+2026-04-28 13:54:26,336 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-04-28 13:54:26,336 WARNING fixture_path: D:\Bharath\wensite\Square-Box\appsource\mck_website\fixtures\xlsx\mck_website.xlsx - Not Found
+2026-04-28 13:54:26,336 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2026-04-28 13:54:26,336 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_build.py'] : build_fixtures in 0:00:00.003327 seconds
+2026-04-28 13:54:26,336 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : run_fixtures
+2026-04-28 13:54:26,336 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:54:26,336 INFO D:\Bharath\wensite\Square-Box\appsource\mck_master\fixtures\json\dxe_master-00-country.json
+2026-04-28 13:54:26,406 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.069770 seconds
+2026-04-28 13:54:26,406 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:54:26,406 INFO D:\Bharath\wensite\Square-Box\appsource\mck_master\fixtures\json\dxe_master-01-state.json
+2026-04-28 13:54:26,422 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.016363 seconds
+2026-04-28 13:54:26,422 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:54:26,422 INFO D:\Bharath\wensite\Square-Box\appsource\mck_master\fixtures\json\dxe_master-02-supportpagecontent.json
+2026-04-28 13:54:26,430 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.008219 seconds
+2026-04-28 13:54:26,430 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:54:26,430 INFO D:\Bharath\wensite\Square-Box\appsource\mck_auth\fixtures\json\dxe_auth-00-accounttype.json
+2026-04-28 13:54:26,436 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.005648 seconds
+2026-04-28 13:54:26,436 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-04-28 13:54:26,436 INFO D:\Bharath\wensite\Square-Box\appsource\mck_auth\fixtures\json\dxe_auth-01-accounttyperole.json
+2026-04-28 13:54:26,436 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00 seconds
+2026-04-28 13:54:26,436 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_fixtures_run.py'] : run_fixtures in 0:00:00.100000 seconds
+2026-04-28 13:54:26,436 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_superuser_account
+2026-04-28 13:54:26,456 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_superuser_account in 0:00:00.020013 seconds
+2026-04-28 13:54:26,456 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\generate_master_permission.py'] : generate_master_permission
+2026-04-28 13:54:26,646 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\generate_master_permission.py'] : generate_master_permission in 0:00:00.189734 seconds
+2026-04-28 13:54:26,646 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\update_mck_role_master_permissions.py'] : update_role_master_permission
+2026-04-28 13:54:26,756 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\update_mck_role_master_permissions.py'] : update_role_master_permission in 0:00:00.110085 seconds
+2026-04-28 13:54:26,756 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_company_profile
+2026-04-28 13:54:27,066 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\scripts\\script_db_init.py'] : create_company_profile in 0:00:00.310733 seconds
+2026-04-28 13:54:27,066 INFO End !!!

@@ -126,7 +126,7 @@ button:active {
     .topbar .container { display: flex; align-items: center; justify-content: space-between; padding: .4rem 0; }
     .topbar a { color: #f8f8f8; opacity: .9; }
 
-    .navbar { position: sticky; top: 0; z-index: 50; background: #0a1e2d; color: #fff; box-shadow: var(--shadow); }
+    .navbar { position: sticky; top: 0; z-index: 50; background: #000000; color: #fff; box-shadow: var(--shadow); }
     .nav-inner { display: flex; align-items: center; gap: 0.5rem; padding: .9rem 0; }
 
     /* Logo built with CSS */
@@ -166,7 +166,7 @@ button:active {
     .mobile-panel { 
       position: absolute; 
       inset: 0 0 0 25%; 
-      background: #0a1e2d; 
+      background: #000000; 
       color: #fff; 
       padding: 1rem; 
       overflow-y: auto; 

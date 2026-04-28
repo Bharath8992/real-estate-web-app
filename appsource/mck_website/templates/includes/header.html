@@ -1,941 +1,811 @@
-<!-- Top Announcement Bar -->
-<div class="announce" id="announceBar" role="region" aria-label="Announcement">
-  <div class="announce__track">
-    Vellore's No.1 Real Estate Platform • Find Homes, Plots & Commercial Spaces • Trusted Agents • Verified Listings • Secure Deals •
-    Mumbai's No.1 Real Estate Platform • Find Homes, Plots & Commercial Spaces • Trusted Agents • Verified Listings • Secure Deals •
-  </div>
-  <button class="announce__close" id="announceClose" aria-label="Close announcement">
-    <i class="fas fa-times" aria-hidden="true"></i>
-  </button>
-</div>
-
-<!-- NAVBAR -->
-<nav class="navbar">
-  <div class="container nav-inner">
-    <!-- Logo -->
-    <a class="logo" href="{% url 'mck_website:home_page' %}" aria-label="Homepage">
-      <div class="logo-mark">SB</div>
-      <div class="logo-text">
-        Square<span class="highlight">Box</span>
-      </div>
-    </a>
-
-    <!-- Desktop Nav -->
-    <ul class="nav desktop-nav" role="menubar" aria-label="Primary">
-      <!-- Buy Dropdown -->
-      <li class="nav-dropdown">
-        <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale" role="menuitem" aria-haspopup="true" class="dropdown-toggle">Buy </a>
-        <div class="dropdown" role="menu">
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Apartment">Apartments</a>
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Independent_House">Independent House</a>
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Villa">Villa</a>
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Plot">Plot / Land</a>
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Commercial">Commercial Property</a>
-          <a href="{% url 'mck_website:mck_property_page' %}">New Launch</a>
-        </div>
-      </li>
-      
-      <!-- Rent Dropdown -->
-      <li class="nav-dropdown">
-        <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent" role="menuitem" aria-haspopup="true" class="dropdown-toggle">Rent </a>
-        <div class="dropdown" role="menu">
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Apartment">Apartments</a>
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Independent_House">Independent House</a>
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Villa">Villa</a>
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Plot">Plot / Land</a>
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Commercial">Commercial Property</a>
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&status=New Launch">New Launch</a>
-        </div>
-      </li>
-      
-      <li><a href="{% url 'mck_website:mck_property_create_page' %}">Sell</a></li>
-    </ul>
-
-    <!-- User Authentication Section - Desktop -->
-    <div class="user-auth desktop-auth">
-      {% if user.is_authenticated %}
-        <!-- User is logged in - Show profile dropdown -->
-        <div class="user-dropdown">
-          <button class="user-btn" aria-expanded="false" aria-label="User menu">
-            <i class="fas fa-user-circle"></i>
-            <span class="user-name">{{ user.first_name|default:user.username }}</span>
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="user-menu" role="menu">
-            
-            <div class="user-menu-divider"></div>
-            <a href="{% url 'mck_auth:website_logout' %}" role="menuitem" class="logout-btn">
-              <i class="fas fa-sign-out-alt"></i>Logout
-            </a>
-          </div>
-        </div>
-      {% else %}
-        <!-- User is not logged in - Show login/register buttons -->
-        <div class="auth-buttons">
-          <a href="{% url 'mck_auth:website_signin' %}" class="auth-btn login-btn">
-            <i class="fas fa-sign-in-alt"></i>Login
-          </a>
-          <a href="{% url 'mck_auth:website_signup' %}" class="auth-btn register-btn">
-            <i class="fas fa-user-plus"></i>Register
-          </a>
-        </div>
-      {% endif %}
-    </div>
-
-    <!-- Hamburger (Mobile Only) -->
-    <button class="hamburger" aria-label="Open menu" id="openMobileNav">☰</button>
-  </div>
-  
-  <!-- Services Submenu Row -->
-  <div class="d-flex justify-content-center mt-2">
-    <div class="d-flex flex-wrap justify-content-center gap-3">
-   
-      <li><a class="text-white" href="{% url 'mck_website:property_legal_services_page' %}">Property Legal Services</a></li>
-      <li><a class="text-white"href="{% url 'mck_website:land_levelling_page' %}">Land Levelling</a></li>
-      <li><a class="text-white" href="{% url 'mck_website:fencing_page' %}">Fencing</a></li>
-      <li><a class="text-white"  href="{% url 'mck_website:solar_page' %}">Solar Roadmap</a></li>
-      <li><a class="text-white"  href="{% url 'mck_website:property_maintenance_page' %}"> Property Maintenance</a></li>
-    </div>
-  </div>
-</div>
-
-</nav>
-
-<!-- Mobile Nav Drawer -->
-<div class="mobile-nav-drawer" id="mobileNavDrawer">
-  <div class="mobile-nav-content">
-    <!-- Close Button -->
-    <button class="mobile-close-btn" id="closeMobileNav" aria-label="Close menu">✕</button>
-
-    <!-- Mobile Logo -->
-    <div class="mobile-logo">
-      <div class="logo-mark text-dark">SB</div>
-      <div class="logo-text">
-        Square<span class="highlight">Box</span>
-      </div>
-    </div>
-
-    <!-- Mobile User Auth Section -->
-    <div class="mobile-auth-section">
-      {% if user.is_authenticated %}
-        <div class="mobile-user-info">
-          <i class="fas fa-user-circle"></i>
-          <div>
-            <div class="mobile-user-name">{{ user.first_name|default:user.username }}</div>
-            <div class="mobile-user-email">{{ user.email }}</div>
-          </div>
-        </div>
-        <div class="mobile-auth-links">
-          
-          <a href="{% url 'mck_auth:website_logout' %}" class="mobile-auth-link logout-link">
-            <i class="fas fa-sign-out-alt"></i>Logout
-          </a>
-        </div>
-      {% else %}
-        <!-- Login/Register buttons inside mobile menu -->
-        <div class="mobile-auth-header">
-          <h3>Account</h3>
-        </div>
-        <div class="mobile-auth-buttons">
-          <a href="{% url 'mck_auth:website_signin' %}" class="mobile-auth-btn login-btn">
-            <i class="fas fa-sign-in-alt"></i>Login
-          </a>
-          <a href="{% url 'mck_auth:website_signup' %}" class="mobile-auth-btn register-btn">
-            <i class="fas fa-user-plus"></i>Register
-          </a>
-        </div>
-      {% endif %}
-    </div>
-
-    <div class="mobile-nav-menu">
-      <!-- Buy Dropdown -->
-      <div class="mobile-nav-item">
-        <button class="mobile-nav-toggle" data-target="buy-dropdown">
-          Buy <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="mobile-nav-dropdown" id="buy-dropdown">
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Apartment">Apartments</a>
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Independent_House">Independent House</a>
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Villa">Villa</a>
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Plot">Plot / Land</a>
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Commercial">Commercial Property</a>
-          <a href="{% url 'mck_website:mck_property_page' %}">New Launch</a>
-        </div>
-      </div>
-
-      <!-- Rent Dropdown -->
-      <div class="mobile-nav-item">
-        <button class="mobile-nav-toggle" data-target="rent-dropdown">
-          Rent <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="mobile-nav-dropdown" id="rent-dropdown">
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Apartment">Apartments</a>
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Independent_House">Independent House</a>
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Villa">Villa</a>
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Plot">Plot / Land</a>
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Commercial">Commercial Property</a>
-          <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&status=New Launch">New Launch</a>
-        </div>
-      </div>
-
-      <!-- Sell -->
-      <a class="mobile-nav-link" href="{% url 'mck_website:mck_property_create_page' %}">Sell</a>
-
-      <!-- Services Dropdown -->
-      <div class="mobile-nav-item">
-        <button class="mobile-nav-toggle" data-target="services-dropdown">
-          Services <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="mobile-nav-dropdown" id="services-dropdown">
-          <a href="{% url 'mck_website:property_legal_services_page' %}">Property Legal Services</a>
-          <a href="{% url 'mck_website:land_levelling_page' %}">Land Levelling</a>
-          <a href="{% url 'mck_website:property_maintenance_page' %}">Property Management</a>
-          <a href="{% url 'mck_website:fencing_page' %}">Fencing</a>
-          <a href="{% url 'mck_website:solar_page' %}">Solar Roadmap</a>
-        </div>
-      </div>
-
-      <!-- Maintenance -->
-      <a class="mobile-nav-link" href="{% url 'mck_website:property_maintenance_page' %}">Maintenance</a>
-    </div>
-  </div>
-</div>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>SquareBox - Premium Real Estate</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-  /* Navbar Dropdown Styles */
-  .nav-dropdown {
+/* ===========================================================
+   BASE / TOKENS (prefixed with squarebox-)
+   =========================================================== */
+
+:root {
+    --squarebox-primary: #FFD700;
+    --squarebox-primary-dark: #E6C200;
+    --squarebox-ink: #0a0a0a;
+    --squarebox-muted: #6b6b6b;
+    --squarebox-beige: #f4eee5;
+    --squarebox-line: #e5e5e0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--squarebox-ink);
+    background: #fff;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: inherit; border: none; background: none; }
+ul { list-style: none; }
+img, svg { display: block; max-width: 100%; }
+
+/* ===========================================================
+   ANNOUNCEMENT BAR (squarebox- prefix)
+   =========================================================== */
+.squarebox-announce {
     position: relative;
-  }
-  
-  .nav-dropdown:hover .dropdown {
-    display: block;
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-  
-  .dropdown {
+    background: var(--squarebox-ink);
+    color: #fff;
+    overflow: hidden;
+    height: 38px;
+    display: flex;
+    align-items: center;
+}
+.squarebox-announce__track {
+    white-space: nowrap;
+    animation: squarebox-marquee 38s linear infinite;
+    padding-left: 100%;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    font-weight: 500;
+}
+@keyframes squarebox-marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+.squarebox-announce__close {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--squarebox-primary);
+    color: var(--squarebox-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: transform .25s ease, background .25s ease;
+}
+.squarebox-announce__close:hover {
+    background: #fff;
+    transform: translateY(-50%) rotate(90deg);
+}
+
+/* ===========================================================
+   TOP BAR (squarebox- prefix)
+   =========================================================== */
+.squarebox-top-bar {
+    background: #fff;
+    padding: 20px 60px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.squarebox-top-bar-inner {
+    max-width: 1640px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+.squarebox-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.squarebox-logo .squarebox-logo-mark {
+    width: 44px; height: 44px;
+    background: var(--squarebox-primary);
+    color: var(--squarebox-ink);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 8px;
+    font-weight: 800; font-size: 18px;
+    letter-spacing: -0.5px;
+}
+.squarebox-logo .squarebox-logo-text {
+    font-size: 28px; font-weight: 700;
+    color: var(--squarebox-ink); letter-spacing: -0.5px;
+}
+.squarebox-logo .squarebox-logo-text .squarebox-highlight { color: var(--squarebox-primary); }
+.squarebox-info-group { display: flex; align-items: center; gap: 50px; }
+.squarebox-info-item  { display: flex; align-items: center; gap: 14px; }
+.squarebox-info-icon {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: #f4f4f0;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.squarebox-info-icon svg { width: 20px; height: 20px; }
+.squarebox-info-text { display: flex; flex-direction: column; gap: 2px; }
+.squarebox-info-label { font-size: 13px; color: var(--squarebox-muted); font-weight: 400; }
+.squarebox-info-value { font-size: 16px; font-weight: 600; color: var(--squarebox-ink); }
+.squarebox-social-icons { display: flex; align-items: center; gap: 22px; }
+.squarebox-social-icons a { color: var(--squarebox-ink); transition: opacity .2s ease; }
+.squarebox-social-icons a:hover { opacity: .6; }
+.squarebox-social-icons svg { width: 18px; height: 18px; }
+
+/* ===========================================================
+   NAVBAR (squarebox- prefix)
+   =========================================================== */
+.squarebox-navbar {
+    background: var(--squarebox-ink);
+    padding: 0 60px;
+    position: relative;
+    z-index: 100;
+}
+.squarebox-nav-inner {
+    max-width: 1640px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+}
+.squarebox-desktop-nav { display: flex; align-items: center; gap: 50px; }
+.squarebox-desktop-nav > li > a {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 0;
+    transition: color .2s ease;
+    position: relative;
+}
+.squarebox-desktop-nav > li > a:hover { color: var(--squarebox-primary); }
+.squarebox-desktop-nav .squarebox-dropdown-toggle::after {
+    content: "";
+    display: inline-block;
+    width: 8px; height: 8px;
+    margin-left: 6px;
+    border-right: 1.6px solid currentColor;
+    border-bottom: 1.6px solid currentColor;
+    transform: rotate(45deg) translate(-2px, -2px);
+}
+.squarebox-nav-dropdown { position: relative; }
+.squarebox-dropdown {
     position: absolute;
     top: 100%;
     left: 0;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    padding: 0.5rem;
-    min-width: 200px;
-    display: none;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    padding: .5rem;
+    min-width: 220px;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
+    transform: translateY(20px);
+    transition: all .25s ease;
     z-index: 1000;
-  }
-  /* Services Submenu Styling */
-.d-flex.justify-content-center {
-  width: 100%;
-  /* background: #2c3e50; */
-  background: #0a1e2d;
-  color: white;
-  
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  padding: 0.75rem 0;
 }
-
-.d-flex.flex-wrap.justify-content-center {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
+.squarebox-nav-dropdown:hover .squarebox-dropdown,
+.squarebox-nav-dropdown.open .squarebox-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(8px);
 }
-
-.d-flex.flex-wrap.justify-content-center li {
-  list-style: none;
-}
-
-.d-flex.flex-wrap.justify-content-center a {
-  color: #333;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 0.5rem 0;
-  position: relative;
-  transition: color 0.3s ease;
-  white-space: nowrap;
-}
-
-.d-flex.flex-wrap.justify-content-center a:hover {
-  color: var(--primary);
-}
-
-.d-flex.flex-wrap.justify-content-center a:after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--primary);
-  transition: width 0.3s ease;
-}
-
-.d-flex.flex-wrap.justify-content-center a:hover:after {
-  width: 100%;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .d-flex.justify-content-center {
-    display: none !important;
-  }
-  
-  .d-flex.flex-wrap.justify-content-center {
-    gap: 1rem;
-    padding: 0 0.5rem;
-  }
-  
-  .d-flex.flex-wrap.justify-content-center a {
-    font-size: 0.9rem;
-  }
-}
-  
-  .dropdown a {
+.squarebox-dropdown a {
     display: block;
-    padding: 0.75rem 1rem;
-    text-decoration: none;
+    padding: .7rem 1rem;
     color: #333;
-    border-radius: 4px;
-    transition: background 0.3s ease;
-  }
-  
-  .dropdown a:hover {
-    background: #f5f5f5;
-  }
-  
-  /* Services Submenu Row */
-  .services-submenu {
-    background: white;
-    border-top: 1px solid #eee;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    display: none;
-  }
-  
-  .services-submenu .container {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    padding: 0.75rem 1rem;
-  }
-  
-  .services-submenu a {
-    color: #333;
-    text-decoration: none;
-    font-weight: 500;
-    padding: 0.5rem 0;
-    position: relative;
-    transition: color 0.3s ease;
-  }
-  
-  .services-submenu a:hover {
-    color: var(--primary);
-  }
-  
-  .services-submenu a:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--primary);
-    transition: width 0.3s ease;
-  }
-  
-  .services-submenu a:hover:after {
-    width: 100%;
-  }
-  
-  /* Show services submenu when hovering over Services or the submenu itself */
-  .nav li:hover ~ .services-submenu,
-  .services-submenu:hover {
-    display: block;
-  }
-  
-  /* Desktop Authentication Styles */
-  .desktop-auth {
+    font-size: 15px;
+    border-radius: 6px;
+    transition: background .2s ease, color .2s ease;
+}
+.squarebox-dropdown a:hover { background: var(--squarebox-beige); color: var(--squarebox-ink); }
+
+/* Auth */
+.squarebox-desktop-auth { display: flex; align-items: center; gap: 20px; }
+.squarebox-auth-buttons { display: flex; align-items: center; gap: 14px; }
+.squarebox-auth-btn {
+    font-size: 15px; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all .2s ease; border-radius: 6px;
+}
+.squarebox-login-btn { color: #fff; background: transparent; padding: 8px 0; }
+.squarebox-login-btn:hover { color: var(--squarebox-primary); }
+.squarebox-register-btn {
+    background: var(--squarebox-primary);
+    color: var(--squarebox-ink);
+    padding: 12px 24px;
+}
+.squarebox-register-btn:hover { background: var(--squarebox-primary-dark); }
+
+.squarebox-user-dropdown { position: relative; }
+.squarebox-user-btn {
     display: flex;
     align-items: center;
-    margin-left: auto;
-    padding-right: 1rem;
-  }
-
-  .auth-buttons {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  .auth-btn {
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
+    gap: 10px;
+    padding: 8px 20px;
+    background: var(--squarebox-primary);
+    color: var(--squarebox-ink);
+    border-radius: 30px;
     font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .login-btn {
-    background: transparent;
-    border: 2px solid var(--primary);
-    color: var(--primary);
-  }
-
-  .login-btn:hover {
-    background: var(--primary);
-    color: white;
-  }
-
-  .register-btn {
-    background: var(--primary);
-    border: 2px solid var(--primary);
-    color: white;
-  }
-
-  .register-btn:hover {
-    background: transparent;
-    color: var(--primary);
-  }
-  
-  /* User Dropdown Styles */
-  .user-dropdown {
-    position: relative;
-  }
-
-  .user-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: transparent;
-    border: 2px solid var(--primary);
-    border-radius: 6px;
-    color: var(--primary);
+    font-size: 14px;
+    transition: all .2s ease;
     cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-  }
-
-  .user-btn:hover {
-    background: var(--primary);
-    color: white;
-  }
-
-  .user-menu {
+}
+.squarebox-user-btn:hover { background: var(--squarebox-primary-dark); }
+.squarebox-user-btn i:first-child { font-size: 18px; }
+.squarebox-user-menu {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 8px);
     right: 0;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    padding: 0.5rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,.15);
+    padding: .5rem;
     min-width: 200px;
     display: none;
     z-index: 1000;
-  }
-
-  .user-dropdown:hover .user-menu {
-    display: block;
-  }
-
-  .user-menu a {
+}
+.squarebox-user-dropdown.open .squarebox-user-menu { display: block; }
+.squarebox-user-menu a {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    text-decoration: none;
+    gap: 12px;
+    padding: .75rem 1rem;
     color: #333;
-    border-radius: 4px;
-    transition: background 0.3s ease;
-  }
+    border-radius: 8px;
+    font-size: 14px;
+    transition: background .2s ease;
+    text-decoration: none;
+}
+.squarebox-user-menu a:hover { background: var(--squarebox-beige); }
+.squarebox-user-menu-divider { height: 1px; background: #eee; margin: 4px 0; }
+.squarebox-logout-btn { color: #dc3545 !important; }
+.squarebox-logout-btn:hover { background: #ffe6e6 !important; }
 
-  .user-menu a:hover {
-    background: #f5f5f5;
-  }
+/* Hamburger */
+.squarebox-hamburger {
+    display: none;
+    font-size: 24px;
+    color: #fff;
+    background: transparent;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+}
+.squarebox-hamburger i { font-size: 24px; }
 
-  .user-menu-divider {
-    height: 1px;
-    background: #eee;
-    margin: 0.25rem 0;
-  }
+/* ===========================================================
+   SERVICES STRIP (squarebox- prefix)
+   =========================================================== */
+.squarebox-services-row {
+    background: var(--squarebox-ink);
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding: 14px 60px;
+}
+.squarebox-services-list {
+    max-width: 1640px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}
+.squarebox-services-list a {
+    color: #e0e0e0;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    padding: 4px 0;
+    transition: color .2s ease;
+    text-decoration: none;
+}
+.squarebox-services-list a:hover { color: var(--squarebox-primary); }
+.squarebox-services-list a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    height: 1.5px; width: 0;
+    background: var(--squarebox-primary);
+    transition: width .3s ease;
+}
+.squarebox-services-list a:hover::after { width: 100%; }
 
-  .logout-btn {
-    color: #dc3545 !important;
-  }
-
-  .logout-btn:hover {
-    background: #ffe6e6 !important;
-  }
-  
-  /* Mobile Nav Drawer */
-  .mobile-nav-drawer {
+/* ===========================================================
+   MOBILE NAV DRAWER (squarebox- prefix)
+   =========================================================== */
+.squarebox-mobile-nav-drawer {
     position: fixed;
-    top: 0;
-    right: -100%;
-    width: 300px;
+    top: 0; right: -100%;
+    width: 320px;
+    max-width: 88vw;
     height: 100vh;
-    background: #2c3e50;
+    background: var(--squarebox-ink);
     z-index: 10000;
     transition: right 0.3s ease;
     overflow-y: auto;
-  }
-  
-  .mobile-nav-drawer.active {
-    right: 0;
-  }
-  
-  .mobile-nav-content {
-    padding: 1rem;
-    position: relative;
-  }
-  
-  .mobile-close-btn {
+}
+.squarebox-mobile-nav-drawer.active { right: 0; }
+.squarebox-mobile-nav-content { padding: 1.5rem 1.25rem; position: relative; }
+.squarebox-mobile-close-btn {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 10001;
-  }
-  
-  .mobile-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 0;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-  
-  .logo-mark {
+    top: 1rem; right: 1rem;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    font-size: 1.4rem;
     width: 40px;
     height: 40px;
-    background: var(--primary);
-    color: rgb(5, 5, 5);
+    border-radius: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 10001;
+    cursor: pointer;
+}
+.squarebox-mobile-logo {
+    display: flex; align-items: center;
+    gap: .75rem;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.squarebox-mobile-logo .squarebox-logo-mark {
+    width: 44px; height: 44px;
+    background: var(--squarebox-primary);
+    color: #000;
+    display: flex; align-items: center; justify-content: center;
     border-radius: 8px;
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
-  
-  .logo-text {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: white;
-  }
-  
-  .logo-text .highlight {
-    color: var(--primary);
-  }
-  
-  .mobile-nav-menu {
-    margin-top: 1rem;
-  }
-  
-  .mobile-nav-item {
-    margin-bottom: 0.5rem;
-  }
-  
-  .mobile-nav-toggle {
+    font-weight: 800; font-size: 18px;
+}
+.squarebox-mobile-logo .squarebox-logo-text { color: #fff; font-size: 22px; font-weight: 700; }
+.squarebox-mobile-logo .squarebox-highlight { color: var(--squarebox-primary); }
+.squarebox-mobile-auth-section {
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.squarebox-mobile-auth-header h3 { color: #fff; font-size: 1rem; margin-bottom: 0.9rem; letter-spacing: 0.5px; }
+.squarebox-mobile-auth-buttons { display: flex; flex-direction: column; gap: .75rem; }
+.squarebox-mobile-auth-btn {
+    display: flex; align-items: center; justify-content: center;
+    gap: .6rem;
+    padding: .85rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all .2s ease;
+    font-size: 15px;
+    text-decoration: none;
+}
+.squarebox-mobile-auth-btn.squarebox-login-btn {
+    background: transparent;
+    border: 2px solid var(--squarebox-primary);
+    color: var(--squarebox-primary);
+}
+.squarebox-mobile-auth-btn.squarebox-login-btn:hover { background: var(--squarebox-primary); color: var(--squarebox-ink); }
+.squarebox-mobile-auth-btn.squarebox-register-btn {
+    background: var(--squarebox-primary);
+    color: var(--squarebox-ink);
+    border: 2px solid var(--squarebox-primary);
+}
+.squarebox-mobile-auth-btn.squarebox-register-btn:hover { background: transparent; color: var(--squarebox-primary); }
+.squarebox-mobile-user-info {
+    display: flex; align-items: center; gap: .75rem;
+    padding: 1rem;
+    background: rgba(255,255,255,.05);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+.squarebox-mobile-user-info i { font-size: 2rem; color: var(--squarebox-primary); }
+.squarebox-mobile-user-name { font-weight: 600; color: #fff; }
+.squarebox-mobile-user-email { font-size: .75rem; color: #ccc; word-break: break-all; }
+.squarebox-mobile-auth-links { display: flex; flex-direction: column; gap: .5rem; }
+.squarebox-mobile-auth-link {
+    display: flex; align-items: center; gap: .75rem;
+    padding: .75rem 1rem;
+    color: #e7f1fb;
+    border-radius: 6px;
+    transition: background .2s ease;
+    text-decoration: none;
+}
+.squarebox-mobile-auth-link:hover { background: rgba(255,255,255,.1); }
+.squarebox-logout-link { color: #ff6b6b !important; }
+.squarebox-mobile-nav-menu { margin-top: 0.5rem; }
+.squarebox-mobile-nav-item { margin-bottom: 0.5rem; }
+.squarebox-mobile-nav-toggle {
     width: 100%;
     text-align: left;
-    background: rgba(255,255,255,0.1);
-    border: none;
-    padding: 1rem;
-    color: white;
+    background: rgba(255,255,255,.05);
+    padding: .9rem 1rem;
+    color: #fff;
     font-weight: 600;
-    cursor: pointer;
-    border-radius: 6px;
+    border-radius: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .mobile-nav-toggle.active {
-    background: rgba(255,255,255,0.2);
-  }
-  
-  .mobile-nav-dropdown {
-    display: none;
-    padding: 0.5rem 0 0.5rem 1.5rem;
-  }
-  
-  .mobile-nav-dropdown.active {
-    display: block;
-  }
-  
-  .mobile-nav-dropdown a {
-    display: block;
-    padding: 0.75rem;
-    color: #e7f1fb;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background 0.3s ease;
-  }
-  
-  .mobile-nav-dropdown a:hover {
-    background: rgba(255,255,255,0.1);
-  }
-  
-  .mobile-nav-link {
-    display: block;
-    padding: 1rem;
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 6px;
-    transition: background 0.3s ease;
-  }
-  
-  .mobile-nav-link:hover {
-    background: rgba(255,255,255,0.1);
-  }
-  
-  /* Overlay for mobile menu */
-  .mobile-nav-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 9999;
-    display: none;
-  }
-  
-  .mobile-nav-overlay.active {
-    display: block;
-  }
-  
-  /* Mobile Auth Section */
-  .mobile-auth-section {
-    padding: 1rem 0;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-  
-  .mobile-auth-header {
-    margin-bottom: 1rem;
-  }
-  
-  .mobile-auth-header h3 {
-    color: white;
-    font-size: 1.2rem;
-    margin: 0;
-  }
-  
-  .mobile-user-info {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem;
-    background: rgba(255,255,255,0.05);
-    border-radius: 8px;
-    margin-bottom: 1rem;
-  }
-  
-  .mobile-user-info i {
-    font-size: 2rem;
-    color: var(--primary);
-  }
-  
-  .mobile-user-name {
-    font-weight: 600;
-    color: white;
-  }
-  
-  .mobile-user-email {
-    font-size: 0.9rem;
-    color: #ccc;
-  }
-  
-  .mobile-auth-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .mobile-auth-link {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
-    color: #e7f1fb;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: background 0.3s ease;
-  }
-  
-  .mobile-auth-link:hover {
-    background: rgba(255,255,255,0.1);
-  }
-  
-  .logout-link {
-    color: #ff6b6b !important;
-  }
-  
-  .mobile-auth-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  
-  .mobile-auth-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 1rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-  }
-  
-  .mobile-auth-btn.login-btn {
-    background: transparent;
-    border: 2px solid var(--primary);
-    color: var(--primary);
-  }
-  
-  .mobile-auth-btn.login-btn:hover {
-    background: var(--primary);
-    color: white;
-  }
-  
-  .mobile-auth-btn.register-btn {
-    background: var(--primary);
-    border: 2px solid var(--primary);
-    color: white;
-  }
-  
-  .mobile-auth-btn.register-btn:hover {
-    background: transparent;
-    color: var(--primary);
-  }
-  
-  /* Announcement bar close button styles */
-  .announce__close {
-    position: absolute;
-    right: .75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #e7d20eff, #070707ff);
-    border: none;
-    color: #fff;
+    font-size: 15px;
     cursor: pointer;
-    font-size: 16px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    transition: transform .25s ease, box-shadow .25s ease, background .3s ease;
-    line-height: 1;
-    padding: 0;
-  }
-  
-  .announce__close i {
-    display: inline-block;
-    font-size: 18px;
-    line-height: 1;
-    margin: 0;
-    pointer-events: none;
-  }
-  
-  .announce__close:hover {
-    background: linear-gradient(135deg, #070707ff, #504f4fff);
-    transform: translateY(-50%) scale(1.15) rotate(10deg);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.25), 0 0 10px rgba(255, 92, 138, 0.5);
-  }
-  
-  .announce__close:hover i {
-    transform: rotate(90deg);
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .desktop-auth {
-      display: none;
+}
+.squarebox-mobile-nav-toggle.active {
+    background: rgba(255,215,0,.15);
+    color: var(--squarebox-primary);
+}
+.squarebox-mobile-nav-toggle i { transition: transform .25s ease; }
+.squarebox-mobile-nav-toggle.active i { transform: rotate(180deg); }
+.squarebox-mobile-nav-dropdown {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease;
+    padding: 0 0 0 1rem;
+}
+.squarebox-mobile-nav-dropdown.active {
+    max-height: 500px;
+    padding: .4rem 0 .4rem 1rem;
+}
+.squarebox-mobile-nav-dropdown a {
+    display: block;
+    padding: .6rem .75rem;
+    color: #e7f1fb;
+    border-radius: 6px;
+    transition: background .2s ease;
+    font-size: 14px;
+    text-decoration: none;
+}
+.squarebox-mobile-nav-dropdown a:hover { background: rgba(255,255,255,.1); }
+.squarebox-mobile-nav-link {
+    display: block;
+    padding: .9rem 1rem;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background .2s ease;
+    font-size: 15px;
+    text-decoration: none;
+}
+.squarebox-mobile-nav-link:hover { background: rgba(255,255,255,.08); }
+.squarebox-mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.65);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+}
+.squarebox-mobile-nav-overlay.active { opacity: 1; visibility: visible; }
+
+/* ===========================================================
+   RESPONSIVE (squarebox- prefix)
+   =========================================================== */
+@media (max-width: 1280px) {
+    .squarebox-top-bar { padding: 18px 40px; }
+    .squarebox-navbar, .squarebox-services-row { padding-left: 40px; padding-right: 40px; }
+    .squarebox-desktop-nav { gap: 32px; }
+}
+@media (max-width: 1100px) {
+    .squarebox-top-bar { padding: 16px 24px; }
+    .squarebox-navbar, .squarebox-services-row { padding-left: 24px; padding-right: 24px; }
+}
+@media (max-width: 992px) {
+    .squarebox-info-group { gap: 20px; }
+    .squarebox-desktop-nav { gap: 26px; }
+}
+@media (max-width: 850px) {
+    .squarebox-top-bar .squarebox-info-group { display: none; }
+    .squarebox-top-bar .squarebox-social-icons { display: none; }
+    .squarebox-top-bar { justify-content: center; }
+    .squarebox-top-bar-inner { justify-content: space-between; }
+}
+@media (max-width: 768px) {
+    .squarebox-top-bar { display: none; }
+    .squarebox-navbar { padding: 0 20px; }
+    .squarebox-nav-inner { height: 64px; }
+    .squarebox-desktop-nav, .squarebox-desktop-auth { display: none !important; }
+    .squarebox-hamburger { display: inline-flex; }
+    .squarebox-services-row { display: none !important; }
+    .squarebox-announce { height: 34px; }
+    .squarebox-announce__track { font-size: 11px; animation-duration: 30s; }
+    .squarebox-nav-inner .squarebox-logo {
+        display: flex !important;
     }
-    
-    .hamburger {
-      display: block;
+    .squarebox-nav-inner .squarebox-logo .squarebox-logo-mark {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
     }
-    
-    .services-submenu {
-      display: none !important;
+    .squarebox-nav-inner .squarebox-logo .squarebox-logo-text {
+        font-size: 20px;
     }
-  }
-  
-  @media (min-width: 769px) {
-    .hamburger {
-      display: none;
+}
+@media (max-width: 480px) {
+    .squarebox-nav-inner .squarebox-logo .squarebox-logo-text {
+        font-size: 18px;
     }
-    
-    /* Show services submenu on hover */
-    .nav li:nth-child(4):hover ~ .services-submenu,
-    .services-submenu:hover {
-      display: block;
+    .squarebox-nav-inner .squarebox-logo .squarebox-logo-mark {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
     }
-  }
+}
 </style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="squarebox-announce" id="squareboxAnnounceBar">
+    <div class="squarebox-announce__track">
+        Vellore's No.1 Real Estate Platform • Find Homes, Plots &amp; Commercial Spaces • Trusted Agents • Verified Listings • Secure Deals •
+        Mumbai's No.1 Real Estate Platform • Find Homes, Plots &amp; Commercial Spaces • Trusted Agents • Verified Listings • Secure Deals •
+    </div>
+    <button class="squarebox-announce__close" id="squareboxAnnounceClose">
+        <i class="fas fa-times"></i>
+    </button>
+</div>
+
+<!-- TOP BAR -->
+<div class="squarebox-top-bar">
+    <div class="squarebox-top-bar-inner">
+        <a class="squarebox-logo" href="{% url 'mck_website:home_page' %}">
+            <!-- <div class="squarebox-logo-mark">SB</div> -->
+            <div class="squarebox-logo-text"><span class="squarebox-highlight"></span></div>
+        </a>
+        <div class="squarebox-info-group">
+            <a href="tel:3156666688" class="squarebox-info-item">
+                <div class="squarebox-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                <div class="squarebox-info-text"><span class="squarebox-info-label">Have any Question?</span><span class="squarebox-info-value">+91 99945 55962</span></div>
+            </a>
+            <a href="mailto:hi.avitex@gmail.com" class="squarebox-info-item">
+                <div class="squarebox-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                <div class="squarebox-info-text"><span class="squarebox-info-label">Email Us:</span><span class="squarebox-info-value">2024squarebox@gmail.com</span></div>
+            </a>
+            <div class="squarebox-info-item">
+                <div class="squarebox-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                <div class="squarebox-info-text"><span class="squarebox-info-label">Working Hours</span><span class="squarebox-info-value">Mon-Sat, 9AM to 8PM</span></div>
+            </div>
+        </div>
+        <div class="squarebox-social-icons">
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</div>
+
+<!-- NAVBAR - WITH AUTHENTICATION CHECK -->
+<nav class="squarebox-navbar">
+    <div class="squarebox-nav-inner">
+        <a class="squarebox-logo" href="{% url 'mck_website:home_page' %}" aria-label="Homepage">
+            <div class="squarebox-logo-mark">SB</div>
+            <div class="squarebox-logo-text">Square<span class="squarebox-highlight">Box</span></div>
+        </a>
+
+        <ul class="squarebox-desktop-nav" role="menubar">
+            <li class="squarebox-nav-dropdown">
+                <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale" class="squarebox-dropdown-toggle">Buy</a>
+                <div class="squarebox-dropdown">
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Apartment">Apartments</a>
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Independent_House">Independent House</a>
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Villa">Villa</a>
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Plot">Plot / Land</a>
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Commercial">Commercial Property</a>
+                    <a href="{% url 'mck_website:mck_property_page' %}">New Launch</a>
+                </div>
+            </li>
+            <li class="squarebox-nav-dropdown">
+                <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent" class="squarebox-dropdown-toggle">Rent</a>
+                <div class="squarebox-dropdown">
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Apartment">Apartments</a>
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Independent_House">Independent House</a>
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Villa">Villa</a>
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Plot">Plot / Land</a>
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Commercial">Commercial Property</a>
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&status=new-launch">New Launch</a>
+                </div>
+            </li>
+            <li><a href="{% url 'mck_website:mck_property_create_page' %}">Sell</a></li>
+        </ul>
+
+        <!-- AUTHENTICATION SECTION - CONDITIONAL DISPLAY -->
+        <div class="squarebox-desktop-auth">
+            {% if user.is_authenticated %}
+                <!-- User is logged in - Show user dropdown -->
+                <div class="squarebox-user-dropdown" id="squareboxUserDropdown">
+                    <button class="squarebox-user-btn" id="squareboxUserBtn">
+                        <i class="fas fa-user-circle"></i>
+                        <span>{{ user.first_name|default:user.username }}</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="squarebox-user-menu" id="squareboxUserMenu">
+                        <a href=""><i class="fas fa-user"></i> My Profile</a>
+                        <a href="{% url 'mck_website:dashboard' %}"><i class="fas fa-th-large"></i> Dashboard</a>
+                        <a href=""><i class="fas fa-home"></i> My Properties</a>
+                        <div class="squarebox-user-menu-divider"></div>
+                        <a href="{% url 'mck_auth:website_logout' %}" class="squarebox-logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                <!-- User is not logged in - Show login/register buttons -->
+                <div class="squarebox-auth-buttons">
+                    <a href="{% url 'mck_auth:website_signin' %}" class="squarebox-auth-btn squarebox-login-btn">
+                        <i class="fas fa-sign-in-alt"></i>Login
+                    </a>
+                    <a href="{% url 'mck_auth:website_signup' %}" class="squarebox-auth-btn squarebox-register-btn">
+                        <i class="fas fa-user-plus"></i>Register
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+
+        <button class="squarebox-hamburger" id="squareboxOpenMobileNav"><i class="fas fa-bars"></i></button>
+    </div>
+
+    <div class="squarebox-services-row">
+        <ul class="squarebox-services-list">
+            <li><a href="{% url 'mck_website:property_legal_services_page' %}">Property Legal Services</a></li>
+            <li><a href="{% url 'mck_website:land_levelling_page' %}">Land Levelling</a></li>
+            <li><a href="{% url 'mck_website:fencing_page' %}">Fencing</a></li>
+            <li><a href="{% url 'mck_website:solar_page' %}">Solar Roadmap</a></li>
+            <li><a href="{% url 'mck_website:property_maintenance_page' %}">Property Maintenance</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- MOBILE NAV DRAWER -->
+<div class="squarebox-mobile-nav-overlay" id="squareboxMobileNavOverlay"></div>
+<aside class="squarebox-mobile-nav-drawer" id="squareboxMobileNavDrawer">
+    <div class="squarebox-mobile-nav-content">
+        <button class="squarebox-mobile-close-btn" id="squareboxCloseMobileNav"><i class="fas fa-times"></i></button>
+        <div class="squarebox-mobile-logo">
+            <div class="squarebox-logo-mark">SB</div>
+            <div class="squarebox-logo-text">Square<span class="squarebox-highlight">Box</span></div>
+        </div>
+        
+        <!-- MOBILE AUTHENTICATION SECTION - CONDITIONAL DISPLAY -->
+        <div class="squarebox-mobile-auth-section" id="squareboxMobileAuthSection">
+            {% if user.is_authenticated %}
+                <!-- User is logged in - Show user info -->
+                <div class="squarebox-mobile-user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <div>
+                        <div class="squarebox-mobile-user-name">{{ user.first_name|default:user.username }}</div>
+                        <div class="squarebox-mobile-user-email">{{ user.email }}</div>
+                    </div>
+                </div>
+                <div class="squarebox-mobile-auth-links">
+                    <a href="" class="squarebox-mobile-auth-link">
+                        <i class="fas fa-user"></i> My Profile
+                    </a>
+                    <a href="" class="squarebox-mobile-auth-link">
+                        <i class="fas fa-th-large"></i> Dashboard
+                    </a>
+                    <a href="" class="squarebox-mobile-auth-link">
+                        <i class="fas fa-home"></i> My Properties
+                    </a>
+                    <a href="" class="squarebox-mobile-auth-link squarebox-logout-link">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            {% else %}
+                <!-- User is not logged in - Show login/register buttons -->
+                <div class="squarebox-mobile-auth-header"><h3>Account</h3></div>
+                <div class="squarebox-mobile-auth-buttons">
+                    <a href="{% url 'mck_auth:website_signin' %}" class="squarebox-mobile-auth-btn squarebox-login-btn">
+                        <i class="fas fa-sign-in-alt"></i>Login
+                    </a>
+                    <a href="{% url 'mck_auth:website_signup' %}" class="squarebox-mobile-auth-btn squarebox-register-btn">
+                        <i class="fas fa-user-plus"></i>Register
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="squarebox-mobile-nav-menu">
+            <div class="squarebox-mobile-nav-item">
+                <button class="squarebox-mobile-nav-toggle" data-target="squarebox-buy-dropdown">Buy <i class="fas fa-chevron-down"></i></button>
+                <div class="squarebox-mobile-nav-dropdown" id="squarebox-buy-dropdown">
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Apartment">Apartments</a>
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Independent_House">Independent House</a>
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Villa">Villa</a>
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Plot">Plot / Land</a>
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=sale&property_type=Commercial">Commercial Property</a>
+                </div>
+            </div>
+            <div class="squarebox-mobile-nav-item">
+                <button class="squarebox-mobile-nav-toggle" data-target="squarebox-rent-dropdown">Rent <i class="fas fa-chevron-down"></i></button>
+                <div class="squarebox-mobile-nav-dropdown" id="squarebox-rent-dropdown">
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Apartment">Apartments</a>
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Independent_House">Independent House</a>
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Villa">Villa</a>
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Plot">Plot / Land</a>
+                    <a href="{% url 'mck_website:mck_property_page' %}?listing_type=rent&property_type=Commercial">Commercial Property</a>
+                </div>
+            </div>
+            <a class="squarebox-mobile-nav-link" href="{% url 'mck_website:mck_property_create_page' %}">Sell</a>
+            <div class="squarebox-mobile-nav-item">
+                <button class="squarebox-mobile-nav-toggle" data-target="squarebox-services-dropdown">Services <i class="fas fa-chevron-down"></i></button>
+                <div class="squarebox-mobile-nav-dropdown" id="squarebox-services-dropdown">
+                    <a href="{% url 'mck_website:property_legal_services_page' %}">Property Legal Services</a>
+                    <a href="{% url 'mck_website:land_levelling_page' %}">Land Levelling</a>
+                    <a href="{% url 'mck_website:fencing_page' %}">Fencing</a>
+                    <a href="{% url 'mck_website:solar_page' %}">Solar Roadmap</a>
+                    <a href="{% url 'mck_website:property_maintenance_page' %}">Property Maintenance</a>
+                </div>
+            </div>
+            <a class="squarebox-mobile-nav-link" href="{% url 'mck_website:property_maintenance_page' %}">Maintenance</a>
+        </div>
+    </div>
+</aside>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Announcement bar close functionality
-    const announceBar = document.getElementById('announceBar');
-    const announceClose = document.getElementById('announceClose');
-
+document.addEventListener('DOMContentLoaded', function () {
+    // Announcement bar close
+    const announceBar = document.getElementById('squareboxAnnounceBar');
+    const announceClose = document.getElementById('squareboxAnnounceClose');
     if (announceClose) {
-        announceClose.addEventListener('click', function() {
-            announceBar.style.display = 'none';
-        });
+        announceClose.addEventListener('click', () => { announceBar.style.display = 'none'; });
     }
 
-    // Mobile menu functionality
-    const openMobileNav = document.getElementById('openMobileNav');
-    const closeMobileNav = document.getElementById('closeMobileNav');
-    const mobileNavDrawer = document.getElementById('mobileNavDrawer');
-    const mobileNavOverlay = document.createElement('div');
-    mobileNavOverlay.className = 'mobile-nav-overlay';
-    document.body.appendChild(mobileNavOverlay);
+    // Mobile drawer
+    const openBtn = document.getElementById('squareboxOpenMobileNav');
+    const closeBtn = document.getElementById('squareboxCloseMobileNav');
+    const drawer = document.getElementById('squareboxMobileNavDrawer');
+    const overlay = document.getElementById('squareboxMobileNavOverlay');
+    function openDrawer() { drawer.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeDrawer() { drawer.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = ''; document.querySelectorAll('.squarebox-mobile-nav-dropdown').forEach(d => d.classList.remove('active')); document.querySelectorAll('.squarebox-mobile-nav-toggle').forEach(t => t.classList.remove('active')); }
+    if (openBtn) openBtn.addEventListener('click', openDrawer);
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (overlay) overlay.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && drawer.classList.contains('active')) closeDrawer(); });
 
-    // Open mobile menu
-    if (openMobileNav) {
-        openMobileNav.addEventListener('click', function() {
-            mobileNavDrawer.classList.add('active');
-            mobileNavOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    }
-
-    // Close mobile menu
-    function closeMobileMenu() {
-        mobileNavDrawer.classList.remove('active');
-        mobileNavOverlay.classList.remove('active');
-        document.body.style.overflow = 'auto';
-        
-        // Close all dropdowns
-        document.querySelectorAll('.mobile-nav-dropdown').forEach(dropdown => {
-            dropdown.classList.remove('active');
-        });
-        
-        document.querySelectorAll('.mobile-nav-toggle').forEach(toggle => {
-            toggle.classList.remove('active');
-        });
-    }
-
-    if (closeMobileNav) {
-        closeMobileNav.addEventListener('click', closeMobileMenu);
-    }
-
-    // Close mobile menu when clicking outside
-    mobileNavOverlay.addEventListener('click', closeMobileMenu);
-
-    // Mobile dropdown toggles
-    const mobileToggles = document.querySelectorAll('.mobile-nav-toggle');
-    mobileToggles.forEach(toggle => {
+    // Mobile dropdown accordion
+    document.querySelectorAll('.squarebox-mobile-nav-toggle').forEach(toggle => {
         toggle.addEventListener('click', function() {
             const targetId = this.getAttribute('data-target');
             const targetDropdown = document.getElementById(targetId);
-            
-            // Toggle active class
-            this.classList.toggle('active');
-            targetDropdown.classList.toggle('active');
-            
-            // Close other dropdowns
-            document.querySelectorAll('.mobile-nav-dropdown').forEach(dropdown => {
-                if (dropdown.id !== targetId) {
-                    dropdown.classList.remove('active');
-                }
-            });
-            
-            document.querySelectorAll('.mobile-nav-toggle').forEach(otherToggle => {
-                if (otherToggle !== toggle) {
-                    otherToggle.classList.remove('active');
-                }
-            });
+            const wasActive = targetDropdown.classList.contains('active');
+            document.querySelectorAll('.squarebox-mobile-nav-dropdown').forEach(d => d.classList.remove('active'));
+            document.querySelectorAll('.squarebox-mobile-nav-toggle').forEach(t => t.classList.remove('active'));
+            if (!wasActive) { targetDropdown.classList.add('active'); this.classList.add('active'); }
         });
     });
 
-    // Desktop dropdown functionality
-    const navDropdowns = document.querySelectorAll('.nav-dropdown');
-    
-    navDropdowns.forEach(dropdown => {
-        dropdown.addEventListener('mouseenter', function() {
-            const menu = this.querySelector('.dropdown');
-            menu.style.display = 'block';
-            setTimeout(() => {
-                menu.style.opacity = '1';
-                menu.style.visibility = 'visible';
-                menu.style.transform = 'translateY(0)';
-            }, 10);
-        });
-        
-        dropdown.addEventListener('mouseleave', function() {
-            const menu = this.querySelector('.dropdown');
-            menu.style.opacity = '0';
-            menu.style.visibility = 'hidden';
-            menu.style.transform = 'translateY(10px)';
-            setTimeout(() => {
-                menu.style.display = 'none';
-            }, 300);
-        });
+    // Desktop dropdown touch fallback
+    document.querySelectorAll('.squarebox-nav-dropdown').forEach(dropdown => {
+        const toggle = dropdown.querySelector('.squarebox-dropdown-toggle');
+        if (toggle) {
+            toggle.addEventListener('click', function(e) {
+                if (window.matchMedia('(hover: none)').matches) {
+                    e.preventDefault();
+                    document.querySelectorAll('.squarebox-nav-dropdown.open').forEach(d => { if (d !== dropdown) d.classList.remove('open'); });
+                    dropdown.classList.toggle('open');
+                }
+            });
+        }
     });
+    document.addEventListener('click', function(e) { if (!e.target.closest('.squarebox-nav-dropdown')) document.querySelectorAll('.squarebox-nav-dropdown.open').forEach(d => d.classList.remove('open')); });
 
-    // User dropdown functionality for desktop
-    const userBtn = document.querySelector('.user-btn');
-    const userMenu = document.querySelector('.user-menu');
+    // User dropdown logic (desktop) - only if element exists
+    const userDropdown = document.getElementById('squareboxUserDropdown');
+    const userBtn = document.getElementById('squareboxUserBtn');
+    const userMenu = document.getElementById('squareboxUserMenu');
     
-    if (userBtn && userMenu) {
+    if (userBtn && userMenu && userDropdown) {
         userBtn.addEventListener('click', function(e) {
             e.stopPropagation();
-            const isExpanded = userBtn.getAttribute('aria-expanded') === 'true';
-            userBtn.setAttribute('aria-expanded', String(!isExpanded));
-            userMenu.style.display = isExpanded ? 'none' : 'block';
-        });
-
-        // Close user menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.user-dropdown')) {
-                userBtn.setAttribute('aria-expanded', 'false');
-                userMenu.style.display = 'none';
-            }
-        });
-    }
-    
-    // Services submenu functionality
-    const servicesMainLink = document.querySelector('.services-main-link');
-    const servicesSubmenu = document.querySelector('.services-submenu');
-    
-    if (servicesMainLink && servicesSubmenu) {
-        servicesMainLink.addEventListener('mouseenter', function() {
-            servicesSubmenu.style.display = 'block';
+            userDropdown.classList.toggle('open');
         });
         
-        servicesSubmenu.addEventListener('mouseleave', function() {
-            servicesSubmenu.style.display = 'none';
+        document.addEventListener('click', function(e) {
+            if (!userDropdown.contains(e.target)) {
+                userDropdown.classList.remove('open');
+            }
         });
     }
 });
 </script>
+</body>
+</html>

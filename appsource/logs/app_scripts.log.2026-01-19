@@ -1,0 +1,76 @@
+2025-08-28 15:57:42,871 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : run
+2025-08-28 15:57:42,872 INFO Starting ...
+2025-08-28 15:57:42,872 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : dropDatabase
+2025-08-28 15:57:42,872 INFO django.db.backends.sqlite3
+2025-08-28 15:57:42,872 DEBUG dropping database...G:\square_box\appsource\mck_squarebox.sqlite3
+2025-08-28 15:57:42,873 DEBUG dropped database...G:\square_box\appsource\mck_squarebox.sqlite3
+2025-08-28 15:57:42,873 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : dropDatabase in 0:00:00.000999 seconds
+2025-08-28 15:57:42,873 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : createDatabase
+2025-08-28 15:57:42,873 DEBUG creating database...G:\square_box\appsource\mck_squarebox.sqlite3
+2025-08-28 15:57:42,874 DEBUG created database...G:\square_box\appsource\mck_squarebox.sqlite3
+2025-08-28 15:57:42,874 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : createDatabase in 0:00:00.000999 seconds
+2025-08-28 15:57:42,874 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : run_migrations
+2025-08-28 15:57:42,886 ERROR Traceback (most recent call last):
+  File "G:\square_box\appsource\scripts\script_db_init.py", line 100, in run_migrations
+    for apps in all_app_list:
+                ^^^^^^^^^^^^
+NameError: name 'all_app_list' is not defined
+
+2025-08-28 15:57:42,886 ERROR Function 'run_migrations' raised NameError with error 'name 'all_app_list' is not defined'
+2025-08-28 15:57:42,886 ERROR Function 'run' raised NameError with error 'name 'all_app_list' is not defined'
+2025-08-28 15:58:32,761 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : run
+2025-08-28 15:58:32,761 INFO Starting ...
+2025-08-28 15:58:32,761 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : dropDatabase
+2025-08-28 15:58:32,761 INFO django.db.backends.sqlite3
+2025-08-28 15:58:32,761 DEBUG dropping database...G:\square_box\appsource\mck_squarebox.sqlite3
+2025-08-28 15:58:32,761 DEBUG dropped database...G:\square_box\appsource\mck_squarebox.sqlite3
+2025-08-28 15:58:32,761 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : dropDatabase in 0:00:00 seconds
+2025-08-28 15:58:32,761 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : createDatabase
+2025-08-28 15:58:32,761 DEBUG creating database...G:\square_box\appsource\mck_squarebox.sqlite3
+2025-08-28 15:58:32,761 DEBUG created database...G:\square_box\appsource\mck_squarebox.sqlite3
+2025-08-28 15:58:32,761 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : createDatabase in 0:00:00 seconds
+2025-08-28 15:58:32,761 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : run_migrations
+2025-08-28 15:58:39,468 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : run_migrations in 0:00:06.707645 seconds
+2025-08-28 15:58:39,468 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : create_authusers
+2025-08-28 15:58:40,781 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : create_authusers in 0:00:01.312780 seconds
+2025-08-28 15:58:40,781 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : build_fixtures
+2025-08-28 15:58:40,782 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2025-08-28 15:58:40,782 WARNING fixture_path: G:\square_box\appsource\mck_master\fixtures\xlsx\mck_master.xlsx - Not Found
+2025-08-28 15:58:40,782 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2025-08-28 15:58:40,783 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2025-08-28 15:58:40,784 WARNING fixture_path: G:\square_box\appsource\mck_auth\fixtures\xlsx\mck_auth.xlsx - Not Found
+2025-08-28 15:58:40,784 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00.001093 seconds
+2025-08-28 15:58:40,785 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2025-08-28 15:58:40,785 WARNING fixture_path: G:\square_box\appsource\mck_admin_console\fixtures\xlsx\mck_admin_console.xlsx - Not Found
+2025-08-28 15:58:40,785 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2025-08-28 15:58:40,786 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2025-08-28 15:58:40,786 WARNING fixture_path: G:\square_box\appsource\mck_website\fixtures\xlsx\mck_website.xlsx - Not Found
+2025-08-28 15:58:40,786 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2025-08-28 15:58:40,787 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_build.py'] : build_fixtures in 0:00:00.005924 seconds
+2025-08-28 15:58:40,787 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : run_fixtures
+2025-08-28 15:58:40,787 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2025-08-28 15:58:40,787 INFO G:\square_box\appsource\mck_master\fixtures\json\dxe_master-00-country.json
+2025-08-28 15:58:41,373 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.586182 seconds
+2025-08-28 15:58:41,373 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2025-08-28 15:58:41,373 INFO G:\square_box\appsource\mck_master\fixtures\json\dxe_master-01-state.json
+2025-08-28 15:58:41,625 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.252003 seconds
+2025-08-28 15:58:41,625 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2025-08-28 15:58:41,625 INFO G:\square_box\appsource\mck_master\fixtures\json\dxe_master-02-supportpagecontent.json
+2025-08-28 15:58:42,027 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.401367 seconds
+2025-08-28 15:58:42,028 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2025-08-28 15:58:42,028 INFO G:\square_box\appsource\mck_auth\fixtures\json\dxe_auth-00-accounttype.json
+2025-08-28 15:58:42,160 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.132096 seconds
+2025-08-28 15:58:42,160 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2025-08-28 15:58:42,160 INFO G:\square_box\appsource\mck_auth\fixtures\json\dxe_auth-01-accounttyperole.json
+2025-08-28 15:58:42,285 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.125557 seconds
+2025-08-28 15:58:42,286 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_fixtures_run.py'] : run_fixtures in 0:00:01.499208 seconds
+2025-08-28 15:58:42,286 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : create_superuser_account
+2025-08-28 15:58:42,726 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : create_superuser_account in 0:00:00.439279 seconds
+2025-08-28 15:58:42,726 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\generate_master_permission.py'] : generate_master_permission
+2025-08-28 15:58:49,123 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\generate_master_permission.py'] : generate_master_permission in 0:00:06.397765 seconds
+2025-08-28 15:58:49,123 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\update_mck_role_master_permissions.py'] : update_role_master_permission
+2025-08-28 15:58:56,714 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\update_mck_role_master_permissions.py'] : update_role_master_permission in 0:00:07.590671 seconds
+2025-08-28 15:58:56,714 INFO *******Starting function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : create_company_profile
+2025-08-28 15:58:58,262 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : create_company_profile in 0:00:01.548164 seconds
+2025-08-28 15:58:58,262 INFO End !!!
+2025-08-28 15:58:58,262 INFO *******Finished function ['G:\\square_box\\appsource\\scripts\\script_db_init.py'] : run in 0:00:25.501436 seconds

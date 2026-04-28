@@ -1,3 +1,16 @@
+
+import os
+import sys
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, BASE_DIR)
+
+import django
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
+django.setup()
+
+django.setup()
+
 import os
 import traceback
 import sys
@@ -86,7 +99,7 @@ def run_migrations():
         # remove migration files
         app_list = [
     app for app in settings.INSTALLED_APPS 
-    if app.startswith("mck_") or app.startswith("squarebox")
+    if app.startswith("mck_") or app.startswith("mck_website")
 ]
 
         for apps in app_list:
@@ -95,7 +108,7 @@ def run_migrations():
             print(migration_path)
             for file in glob.glob(migration_path+"/0*.py"):
                 os.remove(file)
-        all_app_list = [ app for app in settings.INSTALLED_APPS if app.startswith("mck_") or app.startswith("squarebox")]
+        all_app_list = [ app for app in settings.INSTALLED_APPS if app.startswith("mck_") or app.startswith("mck_website")]
         for apps in all_app_list:
             try:
                 call_command('makemigrations','--pythonpath', apps, interactive=False)
@@ -120,8 +133,8 @@ def create_authusers():
     superuser.mobile_number = "6379573737"
     superuser.email = "mckbytes@gmail.com"
     superuser.set_password("mckbytes321")
-    superuser.first_name = "mano"
-    superuser.last_name = "mano"
+    superuser.first_name = "sri"
+    superuser.last_name = "varam"
     superuser.save()
     return superuser
 
@@ -194,3 +207,22 @@ def run():
     update_mck_role_master_permissions.update_role_master_permission()
     create_company_profile()
     logger.info("End !!!")
+
+
+def run():
+    logger.info("Starting ...")
+    dropDatabase()
+    createDatabase()
+    run_migrations()
+    superuser = create_authusers()
+    script_fixtures_build.build_fixtures(app_name=None)
+    script_fixtures_run.run_fixtures(app_name=None)
+    create_superuser_account(superuser)
+    generate_master_permission.generate_master_permission()
+    update_mck_role_master_permissions.update_role_master_permission()
+    create_company_profile()
+    logger.info("End !!!")
+
+
+if __name__ == "__main__":
+    run()

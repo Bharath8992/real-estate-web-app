@@ -95,6 +95,7 @@ def to_float(value, default=None):
 def to_bool(value):
     return str(value).lower() in ['true', '1', 'yes']
 
+
 @app_logger.functionlogs(log=log_name)
 def property_create_update(request, id=None, mode=None):
     result = False
@@ -108,21 +109,29 @@ def property_create_update(request, id=None, mode=None):
 
         if mode == 'edit' and id:
             obj = Property.objects.filter(id=id, datamode='A').first()
+            if not obj:
+                return False, "Property not found", data
         else:
             obj = Property()
-            obj.created_by = accountuser.id
+            obj.created_by = str(accountuser.id)   # store as string for consistency
+
+        # ----- THE FIX -----
+        # Always attach the Django auth user so the FK is populated.
+        if request.user.is_authenticated:
+            obj.user = request.user
+        # -------------------
 
         # Basic info
         obj.listing_type = pDict.get('listing_type')
         obj.title = pDict.get('title')
         obj.address = pDict.get('address')
-        obj.city = pDict.get('city')  
+        obj.city = pDict.get('city')
         obj.state = pDict.get('state')
         obj.zipcode = pDict.get('zipcode')
         obj.description = pDict.get('description')
         obj.property_type = PropertyType.objects.filter(id=pDict.get("property_type")).first()
 
-        # Numbers (safe conversions)
+        # Numbers
         obj.price = to_int(pDict.get('price'))
         obj.bedrooms = to_int(pDict.get('bedrooms'))
         obj.bathrooms = to_int(pDict.get('bathrooms'))
@@ -158,7 +167,7 @@ def property_create_update(request, id=None, mode=None):
         obj.corner_unit = pDict.get('corner_unit')
         obj.end_unit = pDict.get('end_unit')
         obj.hoa_fee = to_float(pDict.get('hoa_fee'))
-    
+
         # Booleans
         obj.is_published = to_bool(pDict.get('is_published'))
         obj.is_hot_selling = to_bool(pDict.get('is_hot_selling'))
@@ -171,14 +180,9 @@ def property_create_update(request, id=None, mode=None):
         if request.FILES.get('main_image'):
             obj.main_image = request.FILES.get('main_image')
 
-        # Foreign key
-        # property_type_id = pDict.get('property_type')
-        # if property_type_id:
-        #     obj.property_type = PropertyType.objects.get(pk=property_type_id)
-
-        obj.updated_by = accountuser.id
-
+        obj.updated_by = str(accountuser.id)
         obj.save()
+
         data['property'] = obj
         result, msg = True, success_msg
 
@@ -188,8 +192,7 @@ def property_create_update(request, id=None, mode=None):
         logger.error(f'Error at line {exc_traceback.tb_lineno}: {e}')
 
     return result, msg, data
-
-
+    
 
 @app_logger.functionlogs(log=log_name)
 def property_update_status(request, id):
