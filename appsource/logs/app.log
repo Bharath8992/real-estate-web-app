@@ -120,3 +120,22 @@
 2026-04-28 15:37:26,791 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\mck_website\\views.py'] : LandLevellingPage.get in 0:00:00.005285 seconds
 2026-04-28 15:37:40,214 INFO *******Starting function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\mck_website\\views.py'] : HomePage.get
 2026-04-28 15:37:40,252 INFO *******Finished function ['D:\\Bharath\\wensite\\Square-Box\\appsource\\mck_website\\views.py'] : HomePage.get in 0:00:00.037668 seconds
+2026-05-01 14:27:55,686 INFO *******Starting function ['C:\\mck\\Square-Box\\appsource\\mck_website\\views.py'] : HomePage.get
+2026-05-01 14:27:56,545 INFO *******Finished function ['C:\\mck\\Square-Box\\appsource\\mck_website\\views.py'] : HomePage.get in 0:00:00.859253 seconds
+2026-05-01 14:28:25,195 INFO *******Starting function ['C:\\mck\\Square-Box\\appsource\\mck_website\\views.py'] : HomePage.get
+2026-05-01 14:28:25,233 INFO *******Finished function ['C:\\mck\\Square-Box\\appsource\\mck_website\\views.py'] : HomePage.get in 0:00:00.038793 seconds
+2026-05-01 14:32:06,417 INFO *******Starting function ['C:\\mck\\Square-Box\\appsource\\mck_website\\views.py'] : HomePage.get
+2026-05-01 14:32:06,456 INFO *******Finished function ['C:\\mck\\Square-Box\\appsource\\mck_website\\views.py'] : HomePage.get in 0:00:00.039391 seconds
+2026-05-01 14:32:13,443 INFO *******Starting function ['C:\\mck\\Square-Box\\appsource\\mck_auth\\views.py'] : SignIn.get
+2026-05-01 14:32:13,556 INFO *******Finished function ['C:\\mck\\Square-Box\\appsource\\mck_auth\\views.py'] : SignIn.get in 0:00:00.113938 seconds
+2026-05-01 14:32:23,059 INFO *******Starting function ['C:\\mck\\Square-Box\\appsource\\mck_auth\\views.py'] : SignIn.post
+2026-05-01 14:32:23,059 INFO *******Starting function ['C:\\mck\\Square-Box\\appsource\\mck_auth\\api.py'] : user_login
+2026-05-01 14:32:25,971 INFO request user: True
+2026-05-01 14:32:25,975 INFO *******Finished function ['C:\\mck\\Square-Box\\appsource\\mck_auth\\api.py'] : user_login in 0:00:02.915839 seconds
+2026-05-01 14:32:25,975 INFO True Success {'user': <User: mck>}
+2026-05-01 14:32:25,975 INFO True
+2026-05-01 14:32:25,975 INFO *******Finished function ['C:\\mck\\Square-Box\\appsource\\mck_auth\\views.py'] : SignIn.post in 0:00:02.915839 seconds
+2026-05-01 14:32:26,012 INFO *******Starting function ['C:\\mck\\Square-Box\\appsource\\mck_admin_console\\views.py'] : DashboardView.get
+2026-05-01 14:32:26,014 INFO *******Starting function ['C:\\mck\\Square-Box\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-05-01 14:32:26,031 INFO *******Finished function ['C:\\mck\\Square-Box\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.017381 seconds
+2026-05-01 14:32:26,228 INFO *******Finished function ['C:\\mck\\Square-Box\\appsource\\mck_admin_console\\views.py'] : DashboardView.get in 0:00:00.216524 seconds
