@@ -93,7 +93,7 @@ django-real-estate-platform/
 
 ### Clone the repository
 
-git clone https://github.com/your-username/django-real-estate-platform.git
+git clone https://github.com/Bharath8992/real-estate-web-app.git
 
 ### Navigate to project folder
 
